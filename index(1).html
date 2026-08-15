@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#6b2f2f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Las recetas de mi abuelita — Rebeca Rueda de Neira</title>
+<style>
+:root{
+  --paper:#f6f0e5;
+  --paper-2:#fffaf2;
+  --ink:#2d2925;
+  --muted:#746c64;
+  --accent:#6b2f2f;
+  --accent-soft:#eadbd5;
+  --sage:#66715d;
+  --line:#ddd2c3;
+  --shadow:0 14px 35px rgba(45,41,37,.10);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(107,47,47,.05),transparent 28rem),
+    radial-gradient(circle at 90% 30%,rgba(102,113,93,.07),transparent 30rem),
+    var(--paper);
+  min-height:100vh;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.skip-link{position:absolute;left:-9999px;top:auto}
+.skip-link:focus{left:12px;top:12px;z-index:999;background:#fff;padding:10px 14px;border-radius:10px}
+.shell{width:min(1180px,calc(100% - 32px));margin:0 auto}
+.site-header{
+  position:sticky;top:0;z-index:30;
+  backdrop-filter:blur(16px);
+  background:rgba(246,240,229,.86);
+  border-bottom:1px solid rgba(221,210,195,.8);
+}
+.header-row{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+.brand-mark{
+  width:38px;height:38px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--accent);color:#fff;font-family:Georgia,serif;font-size:19px
+}
+.header-actions{display:flex;gap:8px}
+.ghost-btn,.solid-btn{
+  border:0;border-radius:999px;padding:10px 15px;font-weight:700;
+}
+.ghost-btn{background:transparent;color:var(--ink)}
+.ghost-btn:hover{background:rgba(107,47,47,.07)}
+.solid-btn{background:var(--accent);color:#fff}
+.hero{padding:72px 0 34px}
+.hero-card{
+  overflow:hidden;position:relative;
+  border:1px solid var(--line);border-radius:32px;
+  background:linear-gradient(135deg,rgba(255,250,242,.96),rgba(238,226,211,.86));
+  box-shadow:var(--shadow);
+  padding:clamp(28px,5vw,64px);
+}
+.hero-card:after{
+  content:"";position:absolute;right:-70px;bottom:-110px;width:300px;height:300px;border-radius:50%;
+  border:36px solid rgba(107,47,47,.055);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:var(--accent)
+}
+h1{
+  max-width:820px;margin:16px 0 6px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.7rem,7vw,5.6rem);
+  line-height:.92;letter-spacing:-.045em
+}
+.author{
+  margin:0 0 22px;font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.25rem,2.5vw,1.8rem);color:var(--sage)
+}
+.intro{
+  max-width:820px;font-size:clamp(1.02rem,1.7vw,1.2rem);
+  line-height:1.72;color:#4c4640;margin:0
+}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.meta-pill{
+  border:1px solid var(--line);background:rgba(255,255,255,.55);
+  border-radius:999px;padding:8px 12px;font-size:.86rem;font-weight:700;color:var(--muted)
+}
+.search-section{padding:18px 0 24px}
+.search-wrap{
+  display:flex;align-items:center;gap:12px;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:20px;
+  padding:10px 12px 10px 18px;box-shadow:0 8px 24px rgba(45,41,37,.06)
+}
+.search-icon{font-size:1.15rem;color:var(--muted)}
+.search-wrap input{
+  width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+  font-size:1rem;padding:7px 0
+}
+.clear-search{
+  border:0;background:transparent;color:var(--muted);padding:8px 10px;border-radius:12px
+}
+.clear-search:hover{background:#eee6db;color:var(--ink)}
+.section{padding:22px 0 42px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:17px}
+.section-title{
+  font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.8rem,3.5vw,2.5rem);
+  margin:0
+}
+.section-sub{margin:5px 0 0;color:var(--muted)}
+.category-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px
+}
+.category-card{
+  min-height:124px;text-align:left;border:1px solid var(--line);border-radius:20px;
+  background:rgba(255,250,242,.85);padding:18px;
+  transition:.18s ease;box-shadow:0 5px 16px rgba(45,41,37,.035)
+}
+.category-card:hover{transform:translateY(-2px);border-color:#cbb9a5;box-shadow:0 10px 24px rgba(45,41,37,.08)}
+.category-number{font-family:Georgia,serif;color:var(--accent);font-size:.85rem}
+.category-name{font-weight:800;font-size:1.06rem;line-height:1.25;margin:12px 0 8px}
+.category-count{font-size:.84rem;color:var(--muted)}
+.toolbar{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px
+}
+.filter-state{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.filter-chip{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+  background:#fff8ee;border-radius:999px;padding:8px 10px;font-weight:700;font-size:.86rem
+}
+.filter-chip button{border:0;background:transparent;color:var(--accent);font-weight:900;padding:0 3px}
+.results-count{color:var(--muted);font-size:.9rem}
+.recipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.recipe-card{
+  display:flex;flex-direction:column;min-height:210px;
+  border:1px solid var(--line);border-radius:20px;background:rgba(255,250,242,.94);
+  padding:18px;transition:.18s ease
+}
+.recipe-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(45,41,37,.09)}
+.recipe-cat{font-size:.74rem;text-transform:uppercase;letter-spacing:.09em;color:var(--sage);font-weight:800}
+.recipe-card h3{
+  font-family:Georgia,"Times New Roman",serif;font-size:1.38rem;line-height:1.12;
+  margin:11px 0 10px
+}
+.recipe-preview{font-size:.9rem;line-height:1.5;color:var(--muted);margin:0 0 18px}
+.card-actions{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+.open-recipe{
+  border:0;background:transparent;color:var(--accent);font-weight:800;padding:6px 0
+}
+.open-recipe:hover{text-decoration:underline}
+.card-source{font-size:.72rem;color:#9a8e84}
+.empty{
+  grid-column:1/-1;border:1px dashed #cdbdaf;border-radius:20px;padding:40px;text-align:center;color:var(--muted);
+  background:rgba(255,250,242,.6)
+}
+.back-top{
+  position:fixed;right:18px;bottom:18px;z-index:20;border:0;border-radius:50%;
+  width:48px;height:48px;background:var(--ink);color:#fff;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:.2s
+}
+.back-top.show{opacity:1;pointer-events:auto}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.85rem;text-align:center}
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;
+}
+.modal.open{display:block}
+.modal-backdrop{position:absolute;inset:0;background:rgba(28,24,20,.52);backdrop-filter:blur(4px)}
+.recipe-panel{
+  position:absolute;right:0;top:0;height:100%;width:min(720px,100%);
+  background:var(--paper-2);overflow:auto;box-shadow:-20px 0 45px rgba(0,0,0,.16)
+}
+.panel-head{
+  position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:14px 18px;background:rgba(255,250,242,.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+.panel-head-actions{display:flex;gap:8px}
+.icon-btn{
+  border:1px solid var(--line);background:#fff8ee;border-radius:999px;padding:9px 12px;font-weight:700;color:var(--ink)
+}
+.icon-btn:hover{background:#f1e6d8}
+.panel-body{padding:clamp(24px,5vw,46px)}
+.panel-cat{color:var(--sage);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.panel-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.035em;margin:12px 0 12px
+}
+.panel-source{font-size:.78rem;color:var(--muted);margin-bottom:28px}
+.recipe-section{border-top:1px solid var(--line);padding:24px 0}
+.recipe-section:first-of-type{border-top:0}
+.recipe-section h4{
+  margin:0 0 13px;font-family:Georgia,"Times New Roman",serif;font-size:1.4rem;color:var(--accent)
+}
+.ingredients{margin:0;padding-left:21px;display:grid;gap:8px;line-height:1.5}
+.prep p,.tips p{margin:0 0 13px;line-height:1.75}
+.tip-box{
+  border-left:4px solid var(--accent);background:var(--accent-soft);
+  padding:16px 18px;border-radius:0 16px 16px 0
+}
+.tip-empty{color:var(--muted);font-style:italic}
+body.modal-open{overflow:hidden}
+@media (max-width:900px){
+  .category-grid,.recipe-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  .shell{width:min(100% - 22px,1180px)}
+  .header-row{height:62px}
+  .brand span:last-child{display:none}
+  .hero{padding-top:30px}
+  .hero-card{border-radius:24px}
+  .category-grid,.recipe-grid{grid-template-columns:1fr}
+  .search-wrap{border-radius:16px}
+  .recipe-panel{width:100%}
+  .panel-body{padding:24px 20px 40px}
+  .header-actions .ghost-btn{display:none}
+}
+@media print{
+  body{background:#fff}
+  .site-header,.hero,.search-section,#categories,.toolbar,.back-top,footer,.modal-backdrop,.panel-head{display:none!important}
+  #recipes{display:none!important}
+  .modal,.modal.open{display:block!important;position:static}
+  .recipe-panel{position:static;width:100%;height:auto;box-shadow:none;overflow:visible;background:#fff}
+  .panel-body{padding:0}
+  .panel-title{font-size:32pt}
+}
+
+/* ===== Responsive enhancements: desktop + Android + iPhone/iPad ===== */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  scroll-padding-top:84px;
+}
+body{
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right);
+  overscroll-behavior-y:contain;
+}
+button,
+input{
+  -webkit-tap-highlight-color:transparent;
+}
+button,
+.category-card,
+.recipe-card,
+.icon-btn,
+.ghost-btn,
+.solid-btn,
+.clear-search,
+.open-recipe{
+  touch-action:manipulation;
+}
+button,
+input[type="search"]{
+  min-height:44px;
+}
+.site-header{
+  padding-top:env(safe-area-inset-top);
+}
+.header-row{
+  min-height:64px;
+  height:auto;
+}
+.hero-card,
+.category-card,
+.recipe-card,
+.search-wrap,
+.recipe-panel{
+  -webkit-backface-visibility:hidden;
+}
+.search-wrap input{
+  min-width:0;
+  font-size:16px; /* evita el zoom automático de Safari iOS */
+}
+.recipe-panel{
+  height:100vh;
+  height:100dvh;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.panel-head{
+  padding-top:max(14px, env(safe-area-inset-top));
+}
+.back-top{
+  right:max(18px, env(safe-area-inset-right));
+  bottom:max(18px, env(safe-area-inset-bottom));
+}
+.category-card,
+.recipe-card{
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+.recipe-card h3,
+.panel-title,
+.category-name{
+  text-wrap:balance;
+}
+.panel-body{
+  overflow-wrap:anywhere;
+}
+@supports (-webkit-touch-callout:none){
+  body{
+    min-height:-webkit-fill-available;
+  }
+}
+@media (hover:none) and (pointer:coarse){
+  .category-card:hover,
+  .recipe-card:hover{
+    transform:none;
+    box-shadow:0 5px 16px rgba(45,41,37,.035);
+  }
+  .category-card:active,
+  .recipe-card:active{
+    transform:scale(.99);
+  }
+  .ghost-btn,
+  .solid-btn,
+  .icon-btn,
+  .open-recipe,
+  .clear-search{
+    min-height:46px;
+  }
+}
+@media (min-width:1100px){
+  .category-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+  .recipe-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+@media (min-width:700px) and (max-width:1099px){
+  .category-grid,
+  .recipe-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media (max-width:699px){
+  :root{
+    --radius:18px;
+  }
+  .shell{
+    width:min(100% - 24px,1180px);
+  }
+  .site-header{
+    background:rgba(246,240,229,.94);
+  }
+  .header-row{
+    gap:8px;
+    min-height:58px;
+  }
+  .brand{
+    min-width:0;
+  }
+  .brand span:last-child{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:52vw;
+    font-size:.9rem;
+  }
+  .brand-mark{
+    width:34px;
+    height:34px;
+    flex:0 0 auto;
+  }
+  .header-actions{
+    flex:0 0 auto;
+  }
+  .header-actions .ghost-btn{
+    display:none;
+  }
+  .solid-btn{
+    padding:9px 12px;
+    font-size:.86rem;
+  }
+  .hero{
+    padding:22px 0 18px;
+  }
+  .hero-card{
+    padding:26px 20px 28px;
+    border-radius:22px;
+  }
+  h1{
+    font-size:clamp(2.3rem,13vw,4rem);
+    line-height:.94;
+    margin-top:12px;
+  }
+  .author{
+    font-size:1.18rem;
+    margin-bottom:16px;
+  }
+  .intro{
+    font-size:.98rem;
+    line-height:1.62;
+  }
+  .hero-meta{
+    gap:8px;
+    margin-top:20px;
+  }
+  .meta-pill{
+    font-size:.78rem;
+    padding:7px 10px;
+  }
+  .search-section{
+    position:sticky;
+    top:calc(58px + env(safe-area-inset-top));
+    z-index:22;
+    padding:8px 0 10px;
+    background:linear-gradient(to bottom,rgba(246,240,229,.98),rgba(246,240,229,.92),rgba(246,240,229,0));
+  }
+  .search-wrap{
+    min-height:52px;
+    padding:6px 8px 6px 14px;
+    border-radius:16px;
+    box-shadow:0 8px 24px rgba(45,41,37,.08);
+  }
+  .search-wrap input{
+    font-size:16px;
+  }
+  .section{
+    padding:18px 0 30px;
+  }
+  .section-head{
+    margin-bottom:13px;
+  }
+  .section-title{
+    font-size:1.85rem;
+  }
+  .section-sub{
+    font-size:.9rem;
+    line-height:1.45;
+  }
+  .category-grid,
+  .recipe-grid{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+  .category-card{
+    min-height:96px;
+    padding:16px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    column-gap:12px;
+  }
+  .category-number{
+    margin:0;
+  }
+  .category-name{
+    margin:0;
+    font-size:1rem;
+  }
+  .category-count{
+    white-space:nowrap;
+    font-size:.76rem;
+  }
+  .recipe-card{
+    min-height:0;
+    padding:17px;
+  }
+  .recipe-card h3{
+    font-size:1.32rem;
+    margin-bottom:8px;
+  }
+  .recipe-preview{
+    font-size:.88rem;
+    margin-bottom:12px;
+  }
+  .toolbar{
+    align-items:flex-start;
+  }
+  .results-count{
+    width:100%;
+  }
+  .recipe-panel{
+    width:100%;
+    max-width:none;
+    border-radius:0;
+  }
+  .panel-head{
+    min-height:60px;
+    padding-left:12px;
+    padding-right:12px;
+  }
+  .panel-head-actions .icon-btn{
+    padding-left:11px;
+    padding-right:11px;
+  }
+  .panel-body{
+    padding:22px 18px calc(42px + env(safe-area-inset-bottom));
+  }
+  .panel-title{
+    font-size:clamp(2rem,10vw,3rem);
+  }
+  .recipe-section{
+    padding:20px 0;
+  }
+  .recipe-section h4{
+    font-size:1.3rem;
+  }
+  .ingredients{
+    padding-left:20px;
+    gap:10px;
+  }
+  .prep p,
+  .tips p{
+    line-height:1.68;
+  }
+  .tip-box{
+    padding:14px 15px;
+  }
+  .back-top{
+    width:46px;
+    height:46px;
+  }
+}
+@media (max-width:380px){
+  .brand span:last-child{
+    max-width:44vw;
+  }
+  .solid-btn{
+    padding:8px 10px;
+    font-size:.8rem;
+  }
+  .category-card{
+    grid-template-columns:auto 1fr;
+  }
+  .category-count{
+    grid-column:2;
+    justify-self:start;
+    margin-top:4px;
+  }
+}
+@media (orientation:landscape) and (max-height:560px){
+  .hero{
+    padding-top:12px;
+  }
+  .hero-card{
+    padding-top:22px;
+    padding-bottom:22px;
+  }
+  h1{
+    font-size:clamp(2.2rem,8vw,3.8rem);
+  }
+  .recipe-panel{
+    height:100dvh;
+  }
+}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="shell header-row">
+    <div class="brand" aria-label="Las recetas de mi abuelita">
+      <div class="brand-mark">R</div>
+      <span>Las recetas de mi abuelita</span>
+    </div>
+    <div class="header-actions">
+      <button class="ghost-btn" id="homeBtn" type="button">Inicio</button>
+      <button class="solid-btn" id="searchFocusBtn" type="button">Buscar receta</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <div class="shell">
+      <div class="hero-card">
+        <div class="eyebrow">Recetario familiar</div>
+        <h1>LAS RECETAS DE MI ABUELITA</h1>
+        <p class="author">Rebeca Rueda de Neira</p>
+        <p class="intro">Esta es la inmortalización del libro de recetas de Rebequita Rueda, la idea es poder transmitir este legado de generación en generación y que todas las personas de la familia tengan acceso a esto</p>
+        <div class="hero-meta">
+          <span class="meta-pill" id="recipeTotalPill"></span>
+          <span class="meta-pill" id="categoryTotalPill"></span>
+          <span class="meta-pill">Recetas revisadas y completadas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="search-section">
+    <div class="shell">
+      <label class="search-wrap" for="searchInput">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Buscar por nombre, ingrediente, preparación o tip de la abuela…" aria-label="Buscar recetas">
+        <button class="clear-search" id="clearSearch" type="button" aria-label="Limpiar búsqueda" title="Limpiar">✕</button>
+      </label>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Índice por categorías</h2>
+          <p class="section-sub">Selecciona una categoría para ver todas sus recetas y apuntes.</p>
+        </div>
+      </div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="recipes">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Recetas</h2>
+          <p class="section-sub">Todo el recetario, reunido y listo para consultar.</p>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="filter-state" id="filterState"></div>
+        <div class="results-count" id="resultsCount"></div>
+      </div>
+      <div class="recipe-grid" id="recipeGrid"></div>
+    </div>
+  </section>
+</main>
+
+<button class="back-top" id="backTop" type="button" aria-label="Volver arriba">↑</button>
+
+<footer>
+  <div class="shell">Un legado familiar de Rebeca Rueda de Neira.</div>
+</footer>
+
+<div class="modal" id="recipeModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-modal></div>
+  <article class="recipe-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="panel-head">
+      <button class="icon-btn" type="button" data-close-modal>← Volver</button>
+      <div class="panel-head-actions">
+        <button class="icon-btn" type="button" id="printRecipe">Imprimir</button>
+      </div>
+    </div>
+    <div class="panel-body" id="modalBody"></div>
+  </article>
+</div>
+
+<script>
+const RECIPES = [{"id":"r001","title":"Masa básica para pizza","category":"Masas, panes, pizzas y fritos","ingredients":["5 tazas de harina de trigo","70 g de levadura en polvo","1/2 taza de aceite","2 cucharaditas de sal","Agua ligeramente tibia"],"preparation":["Disuelva la levadura en agua tibia, aproximadamente a temperatura del cuerpo. Ponga la harina en una taza grande en forma de anillo; en el hueco coloque la sal, la levadura disuelta en un poco de agua y el aceite. Mezcle y amase con las palmas de las manos. Agregue agua tibia poco a poco hasta obtener una masa pegajosa con consistencia de masa de pan. Tape con un trapo y deje reposar."],"tips":["La anotación advierte que el agua demasiado caliente mata la levadura."],"source":"Parte 2, pág. 1 · R001","slug":"masa-basica-para-pizza"},{"id":"r002","title":"Pizza casera","category":"Masas, panes, pizzas y fritos","ingredients":["1 kilo de harina de trigo","1 cucharada de azúcar","1 cucharada de sal","Levadura disuelta en agua tibia","1/2 litro de agua tibia suave","2 cucharadas de aceite"],"preparation":["Disuelva la levadura en un poco de agua tibia con el azúcar y un poco de harina. Déjela en reposo, sin revolver, durante 15 minutos. Incorpore la harina restante, a la que ya se han añadido los ingredientes secos, y amase hasta que no se pegue a los dedos ni a la mesa. Deje reposar aproximadamente 1 hora. Encienda el horno a calor suave para ayudar a que la masa repose y doble su tamaño. Saque la masa, dé un ligero amasado y divídala en dos. Engrase dos moldes de unos 34 cm de diámetro con dos cucharaditas de aceite cada uno. Ponga las porciones de masa, úntese las manos con aceite y extiéndalas en forma redonda, delgada, cubriendo los moldes. Cubra con la salsa y el relleno elegido y hornee."],"tips":["En el cuaderno se recomienda que los rellenos no queden demasiado húmedos."],"source":"Parte 2, págs. 2-5 · R002","slug":"pizza-casera"},{"id":"r003","title":"Pizza italiana","category":"Masas, panes, pizzas y fritos","ingredients":["1 kilo de harina","50 g de levadura fresca","1 cucharada de sal","1 cucharadita de azúcar","100 ml de aceite","1/2 litro de agua tibia"],"preparation":["Prepare la masa siguiendo el mismo principio de la pizza casera: active la levadura, mezcle con los demás ingredientes, amase hasta obtener una masa elástica y deje reposar antes de extender en los moldes."],"tips":[],"source":"Parte 2, pág. 2 · R003","slug":"pizza-italiana"},{"id":"r004","title":"Salsa básica para pizza y armado","category":"Masas, panes, pizzas y fritos","ingredients":["14 onzas de tomates pelados","2 cucharadas de aceite","1 diente de ajo","Queso mozzarella o similar","Sal, pimienta y orégano al gusto"],"preparation":["Dore el ajo en el aceite, añada los tomates y cocine hasta obtener una salsa de consistencia media. Sazone con sal, pimienta y orégano. Ralle el queso. Sobre la masa extendida distribuya la salsa por cucharadas, agregue el queso y el relleno elegido. Hornee aproximadamente a 200-250 °C durante unos 25 minutos."],"tips":[],"source":"Parte 2, págs. 4-5 · R004","slug":"salsa-basica-para-pizza-y-armado"},{"id":"r005","title":"Hojaldres","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de harina de trigo","1 libra de grasa para hojaldre","1 cucharada de azúcar","1 cucharada de mantequilla","1 pizca de sal","1 taza de agua fría, aproximadamente","Bocadillo o queso para el relleno","1 huevo batido con un poco de agua para pincelar"],"preparation":["Mezcle la harina, el azúcar, la mantequilla y la sal. Agregue poco a poco el agua fría hasta obtener una masa lisa, sin trabajarla en exceso.","Extienda la masa en forma de rectángulo, coloque la grasa para hojaldre en el centro y cierre la masa sobre ella.","Estire con rodillo y haga tres vueltas sencillas, dejando reposar la masa 15 a 20 minutos en frío entre cada vuelta.","Estire nuevamente, corte las porciones, rellene con bocadillo o queso y cierre bien los bordes.","Pincele con huevo y hornee a 200 °C hasta que el hojaldre esté crecido y dorado."],"tips":["Trabaje siempre la masa fría para conservar las capas del hojaldre."],"source":"Parte 1, págs. 24-25 · R005 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"hojaldres"},{"id":"r006","title":"Masa de hojaldre para empanadas o pasteles - Esperanza","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de harina de trigo","1 huevo","1/4 de libra de mantequilla","1 pizca de sal","Azúcar y polvo Royal, en poca cantidad","Agua fría, apenas la necesaria para mojar"],"preparation":["Amase hasta que quede bien compacta. Guarde en una bolsa plástica en la nevera por una hora, o mínimo media hora. Extienda, rellene al gusto y fría a fuego medio."],"tips":[],"source":"Parte 2, pág. 38 · R006","slug":"masa-de-hojaldre-para-empanadas-o-pasteles-esperanza"},{"id":"r007","title":"Pan Legis","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de harina de trigo","1 libra de azúcar","8 huevos grandes","Ralladura de limón verde","1/2 libra de mantequilla derretida","1 pocillo de leche, para ablandar","1 cucharadita colmada de polvo Royal"],"preparation":["Bata el azúcar con la mantequilla y vaya agregando los demás ingredientes. Integre bien la harina y la leche hasta obtener una masa uniforme. Hornee hasta que el pan esté cocido y dorado."],"tips":["La abuelita anotó: “Se puede servir con miel”."],"source":"Parte 1, pág. 76 · R007","slug":"pan-legis"},{"id":"r008","title":"Pan de yuca","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de cuajada o queso salado","1/2 libra de almidón de yuca","1 huevo","1 cucharadita de polvo Royal","1 cucharadita de azúcar","Un poco de leche, solo si hace falta"],"preparation":["Amase todos los ingredientes hasta obtener una masa suave, no demasiado blanda. Forme los panes de yuca y llévelos a horno caliente, alrededor de 400°, durante unos 20 minutos."],"tips":[],"source":"Parte 1, pág. 90 · R008","slug":"pan-de-yuca"},{"id":"r009","title":"Pandeyucas - Lucero","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de harina o almidón de yuca","1 libra de queso costeño rallado","1 cucharadita de polvo de hornear","2 huevos","Leche, la necesaria para mojar la masa"],"preparation":["Mezcle y amase hasta obtener una masa manejable. Forme los pandeyucas y déjelos reposar unos 20 minutos. Lleve al horno precalentado a unos 200 °C hasta que se vean dorados y crujientes."],"tips":[],"source":"Parte 1, pág. 72 · R009","slug":"pandeyucas-lucero"},{"id":"r010","title":"Pan de yuca - versión de Cecilia","category":"Masas, panes, pizzas y fritos","ingredients":["3 libras de cuajada o queso costeño","3 paquetes de yucarina","3 huevos","1 cucharadita de polvo de hornear","Leche, la necesaria"],"preparation":["Mezcle los ingredientes y amase. Forme los panes y hornee. La masa preparada se puede congelar para hornear después."],"tips":["Si el queso está muy salado, se puede poner en agua para bajarle la sal."],"source":"Parte 1, pág. 73 · R010","slug":"pan-de-yuca-version-de-cecilia"},{"id":"r011","title":"Almojábanas","category":"Masas, panes, pizzas y fritos","ingredients":["500 g o 1 libra de cuajada molida","250 g de harina de maíz","1 cucharadita de polvo Royal","1 huevo","1 cucharadita de sal","1 cucharada de azúcar","1 taza de leche"],"preparation":["Mezcle todos los ingredientes, forme las almojábanas y acomódelas en una lata engrasada. Hornee a temperatura alta, alrededor de 450°, durante unos 12 minutos o hasta que estén doradas."],"tips":[],"source":"Parte 1, pág. 57 · R011","slug":"almojabanas"},{"id":"r012","title":"Buñuelos “Alba”","category":"Masas, panes, pizzas y fritos","ingredients":["1/2 libra de Colmaíz","1/2 libra de maicena","1 libra de queso salado rallado","2 vasitos de azúcar","1 cucharadita de polvo Royal","4 huevos","Aceite suficiente para freír"],"preparation":["Mezcle el Colmaíz, la maicena, el queso, el azúcar y el polvo Royal.","Agregue los huevos uno a uno y amase hasta obtener una masa suave que permita formar bolas sin agrietarse.","Forme los buñuelos del mismo tamaño.","Póngalos en aceite tibio y deje que suban poco a poco. Cuando floten, aumente ligeramente el fuego y fríalos hasta que estén dorados."],"tips":["El aceite no debe estar demasiado caliente al principio, para que los buñuelos crezcan sin quemarse por fuera."],"source":"Parte 1, pág. 55 · R012 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"bunuelos-alba"},{"id":"r013","title":"Buñuelos deliciosos","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de fécula o maicena","1 libra de queso salado","1 libra de Colmaíz","3 o 4 huevos","2 cucharadas de azúcar","1 pizca de polvo Royal","Leche, si la masa necesita más humedad"],"preparation":["Amase todo. Caliente el aceite y pruebe primero con un buñuelo pequeño; cuando suba, baje a fuego medio y fría los demás."],"tips":[],"source":"Parte 2, pág. 64 · R013","slug":"bunuelos-deliciosos"},{"id":"r014","title":"Repollitas","category":"Masas, panes, pizzas y fritos","ingredients":["1 taza de agua","1 taza de harina de trigo","100 g de mantequilla","4 huevos","1 pizca de sal para versión salada o 1 pizca de azúcar para versión dulce"],"preparation":["Ponga el agua con la mantequilla al fuego hasta que hierva.","Agregue la harina de una sola vez y revuelva con cuchara de palo hasta que se forme una bola que se despegue de la olla.","Retire del fuego y deje entibiar unos minutos.","Incorpore los huevos uno por uno, mezclando muy bien después de cada adición hasta obtener una pasta lisa y espesa.","Forme las repollitas sobre una lata engrasada y hornee a 180 °C durante 30 a 35 minutos, sin abrir el horno durante los primeros 20 minutos.","Deje enfriar, corte y rellene al gusto."],"tips":["Para relleno salado: 1 lata de atún, 4 cucharadas de salsa de tomate, 4 cucharadas de crema de leche y paprika o pimienta; se licúa y se usa para rellenar."],"source":"Parte 1, págs. 86-87 · R014 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"repollitas"},{"id":"r015","title":"Pan integral","category":"Masas, panes, pizzas y fritos","ingredients":["950 g de harina integral","100 g de salvado","50 g de germen de trigo","20 g de levadura seca o 30 g de levadura fresca","100 g de azúcar","150 g de mantequilla","10 g de sal","500 cm³ de agua"],"preparation":["Realice un corte o hueco en los ingredientes secos e incorpore los demás. La sal y la levadura no deben quedar juntas directamente. Amase hasta obtener una masa homogénea y deje reposar 30 minutos. Forme los panes y hornee a unos 350° durante 30 a 40 minutos."],"tips":[],"source":"Parte 2, pág. 50 · R015","slug":"pan-integral"},{"id":"r016","title":"Pan francés","category":"Masas, panes, pizzas y fritos","ingredients":["2.000 g de harina","40 g de sal","60 g de margarina","60 g de azúcar","1.000 g de agua","40 g de levadura","10 g de mejorador"],"preparation":["Active la levadura con parte del agua, azúcar y harina. Integre los ingredientes y trabaje la masa aproximadamente 10 minutos. Déjela reposar 20 minutos. Forme el pan, deje crecer aproximadamente 30 minutos, rocíe con agua y hornee. La anotación indica un tiempo de horno cercano a 20 minutos, con cambios de temperatura anotados en la página siguiente."],"tips":["Las temperaturas escritas al inicio de la pág. 52 son difíciles de interpretar con total certeza."],"source":"Parte 2, págs. 51-52 · R016","slug":"pan-frances"},{"id":"r017","title":"Pan de sal relleno","category":"Masas, panes, pizzas y fritos","ingredients":["1 kilo de harina de trigo","30 g de levadura","25 g de sal","1/8 de libra de mantequilla","1 huevo","500 a 550 ml de agua tibia, aproximadamente","Tocineta o jamón, cebolla y queso para el relleno"],"preparation":["Disuelva la levadura en una parte del agua tibia.","Mezcle harina y sal; añada la levadura, el huevo, la mantequilla y el resto del agua poco a poco. Amase hasta obtener una masa lisa.","Deje crecer tapada hasta que duplique su volumen.","Extienda en un rectángulo, distribuya la tocineta o jamón, la cebolla y el queso. Enrolle y corte en porciones.","Deje reposar nuevamente 20 a 30 minutos y hornee a 180 °C durante unos 20 minutos, hasta dorar."],"tips":[],"source":"Parte 2, págs. 61-62 · R017 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"pan-de-sal-relleno"},{"id":"r018","title":"Pan de salvado","category":"Masas, panes, pizzas y fritos","ingredients":["2 libras de harina de trigo","1 libra de salvado","1/2 libra de mantequilla","1 panela derretida o una cantidad equivalente de azúcar","3 tazas de agua tibia","3 cucharaditas de levadura disueltas en parte del agua","3 cucharaditas de polvo de hornear","1 cucharadita de melado","1 cucharada de sal"],"preparation":["Mezcle harina, salvado, polvo de hornear y sal.","Agregue la mantequilla, la panela derretida, el melado y la levadura.","Añada el agua tibia poco a poco y amase hasta obtener una masa suave.","Deje reposar tapada en un sitio tibio durante una hora.","Forme porciones pequeñas, colóquelas en una lata engrasada, deje reposar 15 minutos más y hornee a 180 °C durante aproximadamente 25 minutos."],"tips":[],"source":"Parte 2, pág. 76 · R018 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"pan-de-salvado"},{"id":"r019","title":"Aritos de cebolla","category":"Masas, panes, pizzas y fritos","ingredients":["Cebolla cortada en aros","Jugo de limón","Harina de trigo","Agua helada","Aceite para freír"],"preparation":["Corte la cebolla en aros y déjela un rato en jugo de limón.","Pase los aros por harina de trigo.","Disuelva harina de trigo en agua helada.","Saque los aros de la harina, páselos por la harina disuelta en agua helada y fríalos en aceite a fuego lento."],"tips":[],"source":"Cuaderno original + foto adicional IMG_4876","slug":"aritos-de-cebolla"},{"id":"r020","title":"Bollitos de mazorca","category":"Masas, panes, pizzas y fritos","ingredients":["Mazorca","Azúcar","Huevo","Mantequilla","Una pizca de sal"],"preparation":["Licúe la mazorca con los ingredientes y sofría la mezcla en una olla de teflón hasta que tome consistencia."],"tips":["El cuaderno no consigna cantidades en esta versión."],"source":"Parte 1, pág. 70 · R020","slug":"bollitos-de-mazorca"},{"id":"r021","title":"Bollitos de mantecado","category":"Masas, panes, pizzas y fritos","ingredients":["1 libra de harina de trigo","1/4 de libra de mantequilla","1/2 libra de azúcar","6 huevos","1 cucharadita de polvo Royal","1 caja o porción de uvas pasas"],"preparation":["Bata la mantequilla con el azúcar hasta que esté bien cremosa. Agregue los huevos poco a poco y luego los demás ingredientes. Incorpore las pasas y hornee aproximadamente una hora."],"tips":[],"source":"Parte 1, pág. 54 · R021 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"bollitos-de-mantecado"},{"id":"r022","title":"Bollitos de mantecado - segunda fórmula","category":"Masas, panes, pizzas y fritos","ingredients":["1 kilo de harina de trigo","1 libra de mantequilla","10 huevos","1 libra de azúcar","1 pizca de sal","Vainilla y ralladura de limón","2 sobres de bicarbonato o polvo de hornear","Uvas pasas"],"preparation":["Bata como un ponqué y cocine aproximadamente una hora. La misma fórmula aparece anotada como base para otras preparaciones de bollería."],"tips":[],"source":"Parte 2, pág. 31 · R022","slug":"bollitos-de-mantecado-segunda-formula"},{"id":"r023","title":"Crepes","category":"Masas, panes, pizzas y fritos","ingredients":["1 1/2 tazas de leche","1 taza de harina de trigo","2 huevos y 1 yema","1/2 cucharadita de polvo de hornear","1 cucharada de azúcar granulada","1 cucharadita de vainilla","Mantequilla para la sartén"],"preparation":["Mezcle los ingredientes hasta obtener una masa lisa. Caliente una sartén ligeramente enmantequillada y cocine porciones delgadas, volteándolas cuando los bordes se despeguen."],"tips":[],"source":"Parte 1, pág. 49 · R188","slug":"crepes"},{"id":"r024","title":"Papa sorpresa","category":"Masas, panes, pizzas y fritos","ingredients":["Papa cocida","Perejil picado","Cebolla fina o cebollín picado","Orégano","Huevo cocido","Queso","Maicena","1 huevo para el batido","Sal","Aceite para freír"],"preparation":["Haga un puré con la papa y sazónelo con las hierbas. Forme porciones y rellénelas con huevo cocido y queso. Aparte prepare un batido de maicena, huevo y sal; pase las porciones por el batido y fríalas."],"tips":["El puré debe quedar firme para que las porciones conserven la forma durante la fritura."],"source":"Parte 1, pág. 88 · R195 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"papa-sorpresa"},{"id":"r025","title":"Relleno para pizza hawaiana","category":"Masas, panes, pizzas y fritos","ingredients":["Rodajas de piña","Jamón","Aceitunas","Queso parmesano o queso para pizza","Mantequilla","Huevo, opcional"],"preparation":["Cubra la masa con salsa básica de pizza y distribuya piña, jamón, aceitunas y queso. La anotación permite añadir huevo. Termine al horno."],"tips":["Las cantidades exactas de dos ingredientes están parcialmente cubiertas por el borde del escaneo."],"source":"Parte 2, pág. 15 · R199","slug":"relleno-para-pizza-hawaiana"},{"id":"r026","title":"Paella - 12 personas","category":"Arroces, pastas y platos de cereal","ingredients":["2 libras de arroz parbolizado","25 g de azafrán español","Aceitunas con pepa","225 g de aceite de oliva","Pimentón, ajo, pimienta y sal","6 pocillos de consomé de pescado","3 tomates picados","1 cabeza de ajo","2 cebollas blancas","2 pimentones rojos","1 pechuga grande en cuadros","1 libra de camarón","1 libra de chipi-chipi","1 libra de mejillones","1 libra de almejas en concha","1 libra de calamar","12 langostinos","Perejil picado al final","Vino blanco"],"preparation":["Cocine el calamar en agua con sal por unos 5 minutos. Sofría la pechuga. En la paellera sofría la cebolla con aceite de oliva, luego el ajo, el tomate y el pimentón. Añada el azafrán y un trago de vino blanco. Incorpore el pollo y el arroz sin lavar, deje que tome los sabores y agregue el consomé. Añada calamar, chipi-chipi y camarones. Rectifique la sal. Después de unos 10 minutos decore con almejas, mejillones, aceitunas, langostinos y tiras de pimentón. Termine la cocción sin tapar."],"tips":["La abuelita anotó que hay que hacerla en paellera."],"source":"Parte 1, págs. 71-72 · R023","slug":"paella-12-personas"},{"id":"r027","title":"Suflé de macarrón - 6 personas","category":"Arroces, pastas y platos de cereal","ingredients":["1/2 libra aproximadamente de macarrón corto","5 cebollas cabezonas","2 tomates","2 ramos de perejil","1 libra de carne de cerdo","1 pedazo de mantequilla","3 tostadas","2 huevos","1/4 de libra de queso"],"preparation":["Cocine los macarrones. Prepare un guiso con tomate, perejil y cebolla. Cocine la carne y muélala. Pique los macarrones y mezcle todos los ingredientes con la carne molida, las tostadas, los huevos y el queso rallado. Engrase un molde con mantequilla, vierta la preparación y cocine al baño María."],"tips":["La receta aparece nuevamente más adelante en el cuaderno con el mismo procedimiento."],"source":"Parte 1, págs. 74 y 83-84 · R024","slug":"sufle-de-macarron-6-personas"},{"id":"r028","title":"Pasta con salsa de pescado","category":"Arroces, pastas y platos de cereal","ingredients":["1 libra de pasta, la que se prefiera","1/4 de libra de mantequilla","1/2 taza de aceite","4 tomates grandes","1/2 libra de filete de pescado, atún o cualquier marisco","1 cubo Maggi","1 copa de vino blanco seco","2 cucharadas de queso parmesano","1 cucharada de perejil picado","1/2 pocillo de crema de leche"],"preparation":["Cocine la pasta al dente. Pele los tomates. Derrita la mantequilla con el aceite, agregue el pescado y deje sofreír un poco. Añada el tomate y un diente de ajo; cuando el pescado esté sofrito agregue el cubo Maggi, el perejil, el vino y por último la crema de leche, sin dejarla hervir. Sirva la pasta y la salsa, con el queso aparte."],"tips":[],"source":"Parte 2, pág. 32 · R025","slug":"pasta-con-salsa-de-pescado"},{"id":"r029","title":"Arroz gratinado - Esperanza","category":"Arroces, pastas y platos de cereal","ingredients":["2 latas de atún Van Camp’s","2 cucharadas de mantequilla","2 cucharadas de harina de trigo","2 tazas de leche de vaca","2 tazas de crema de leche","2 tazas de arroz seco","2 tomates pelados y tajados","1/2 libra de queso doble crema","4 huevos cocidos","1/2 taza de queso parmesano","Sal y pimienta al gusto"],"preparation":["Derrita la mantequilla y agregue la harina, la leche, la crema y los condimentos para formar una salsa. En una refractaria coloque una capa con la mitad del arroz cocido; encima distribuya el tomate, el atún, los huevos y el queso. Cubra con la otra mitad del arroz, bañe con la salsa y termine con parmesano. Lleve al horno entre 10 y 15 minutos."],"tips":[],"source":"Parte 2, pág. 43 · R026","slug":"arroz-gratinado-esperanza"},{"id":"r030","title":"Suflé de queso - versión con salchichón","category":"Arroces, pastas y platos de cereal","ingredients":["1/2 libra de queso","1 trozo pequeño de salchichón","2 cucharadas de mostaza","1 pizca de sal","2 huevos","Pan","1/2 pocillo de leche"],"preparation":["Remoje el pan con la leche. Ralle el queso y mézclelo con el pan, los huevos, la mostaza y la sal. Corte el salchichón en pedacitos, incorpórelo y lleve la mezcla al horno."],"tips":[],"source":"Parte 1, pág. 75 · R191","slug":"sufle-de-queso-version-con-salchichon"},{"id":"r031","title":"Esponjado de queso","category":"Arroces, pastas y platos de cereal","ingredients":["1/4 de libra de queso rallado","3 onzas de harina de trigo (aprox. 85 g)","2 onzas de mantequilla (aprox. 55 g)","2 huevos","1 botella de leche (aprox. 750 ml)","1 cucharadita de polvo Royal","Sal al gusto"],"preparation":["Derrita la mantequilla a fuego bajo y agregue la harina, revolviendo durante uno o dos minutos.","Añada la leche poco a poco, sin dejar de revolver, hasta formar una salsa espesa y lisa.","Retire del fuego, incorpore el queso rallado y deje entibiar.","Separe los huevos. Agregue las yemas a la mezcla y luego el polvo Royal.","Bata las claras a punto de nieve e incorpórelas suavemente.","Vierta en un molde engrasado y enharinado y hornee a 150 °C hasta que esté firme y al introducir un cuchillo salga limpio."],"tips":["Sirva recién horneado para conservar mejor la textura esponjosa."],"source":"Parte 1, págs. 84-85 · R193 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"esponjado-de-queso"},{"id":"r032","title":"Suflé de queso - versión grande","category":"Arroces, pastas y platos de cereal","ingredients":["6 huevos","1 paquete de queso parmesano o costeño, anotado como aproximadamente 1 libra","4 cucharadas de harina de trigo","1 lata de crema de leche","1 1/2 cucharaditas de polvo de hornear"],"preparation":["Separe las yemas de las claras. Bata las claras hasta que espesen; incorpore las yemas y luego la harina con el polvo de hornear. Agregue la crema de leche y el queso rallado. Vierta en moldes engrasados y hornee alrededor de 350° por unos 25 minutos."],"tips":[],"source":"Parte 1, pág. 98 · R197","slug":"sufle-de-queso-version-grande"},{"id":"r033","title":"Conejo en mostaza","category":"Carnes y cerdo","ingredients":["1 conejo","1 cebolla cabezona rallada","2 cucharadas de jugo de limón o vinagre","1/2 vaso de vino blanco seco","8 cucharadas de mostaza","1 taza de crema de leche","2 yemas de huevo","1 taza de caldo básico de pollo","Sal y pimienta"],"preparation":["Adobe el conejo y déjelo en la nevera desde el día anterior. Dórelo en grasa o mantequilla. Agregue el caldo y cocine a fuego suave. Mezcle la mostaza con el vino y añádala; si se seca, agregue un poco de agua o caldo. Al final, cuele o ajuste la salsa, incorpore las yemas y la crema de leche y cocine unos minutos más sin dejar que se corte."],"tips":[],"source":"Parte 1, pág. 40 · R027","slug":"conejo-en-mostaza"},{"id":"r034","title":"Posta cartagenera","category":"Carnes y cerdo","ingredients":["5 libras de posta o muchacho, para unas 10 personas","Aceite","2 cucharadas de mantequilla","4 cucharadas de quemado de panela","1 cucharada de vinagre","1 cucharada de jugo de limón","3 dientes de ajo","2 cebollas cabezonas picadas","3 tallos de cebolla larga","Sal y pimienta","Tamarindo, opcional"],"preparation":["Adobe la carne desde el día anterior. Al día siguiente selle en aceite y mantequilla hasta que quede negrita por todos lados. Cocine en olla a presión hasta que esté blanda, deje reposar y corte en tajadas. Prepare una salsa con cebolla, tomate, panela quemada y, si desea, tamarindo; incorpore las tajadas y deje conservar."],"tips":[],"source":"Parte 1, págs. 61-62 · R028","slug":"posta-cartagenera"},{"id":"r035","title":"Otra posta cartagenera","category":"Carnes y cerdo","ingredients":["6 cucharadas de aceite vegetal con achiote","1/2 taza de agua con panela en trozos, para hacer melado","1 cebolla blanca grande picada","1 libra de tomate chonto pelado y picado","200 g de pulpa de tamarindo","Salsa negra","Sal y pimienta","1 pastilla Maggi","Posta de pierna o muchacho","Tomillo, laurel, pimienta, ajo y sal para el adobo"],"preparation":["Prepare el melado de panela. Adobe la carne desde el día anterior con tomillo, laurel, pimienta, ajo y sal. Al día siguiente selle en aceite y mantequilla, cocine a presión hasta que ablande, deje reposar y corte en tajadas. Haga la salsa con cebolla, tomate, melado de panela y tamarindo; incorpore la carne y deje conservar."],"tips":[],"source":"Parte 1, pág. 61 · R029","slug":"otra-posta-cartagenera"},{"id":"r036","title":"Posta negra / posta cartagenera - 10 personas","category":"Carnes y cerdo","ingredients":["5 libras de posta cartagenera o de res","2 cucharadas de aceite","2 cucharadas de mantequilla","1 cucharada de quemado de panela","1 cucharadita de vinagre","1 cucharadita de azúcar","1/2 cucharadita de jugo de limón","2 cebollas cabezonas picadas","4 dientes de ajo majados","Sal y pimienta al gusto"],"preparation":["Chuce la carne y frótela con sal, pimienta, cebolla, ajo y jugo de limón. Introduzca parte de los aliños en los huecos y déjela hasta el día siguiente. Caliente el aceite y la mantequilla y sofría muy bien la carne hasta que quede oscura por todos lados. Cubra con agua, tape y cocine a fuego lento hasta que ablande. Saque la carne y reduzca la salsa; agregue azúcar, quemado de panela y vinagre. Devuelva la posta a la salsa y deje conservar a fuego lento. Sirva con arroz blanco o ensalada."],"tips":[],"source":"Parte 2, págs. 72-73 · R030","slug":"posta-negra-posta-cartagenera-10-personas"},{"id":"r037","title":"Lomo de cerdo relleno","category":"Carnes y cerdo","ingredients":["1 1/2 kilos de lomo de cerdo","1 rama de romero fresco","Pimienta y sal al gusto","1 litro de caldo de pollo casero","250 ml de vino dulce","1 cucharada de mantequilla","1 chorro de aceite de oliva","Ciruelas pasas o manzana verde","Tocineta"],"preparation":["Corte la manzana en tajadas y saltéela con mantequilla hasta que esté tierna. Abra el lomo, sazónelo con sal y pimienta y coloque franjas de tocineta con ciruela o manzana. Enrolle y ate con hilo. Selle en una cacerola con aceite de oliva hasta dorarlo por todos lados. Agregue el vino y deje evaporar el alcohol. Pase al horno a 200 °C, cubierto con papel aluminio, alrededor de 40 minutos; si se seca, añada caldo de pollo. Sirva en tajadas."],"tips":[],"source":"Parte 1, págs. 65-66 · R031 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"lomo-de-cerdo-relleno"},{"id":"r038","title":"Lomo de cerdo relleno - versión sencilla","category":"Carnes y cerdo","ingredients":["2 libras de lomo de cerdo","Comino, pimienta y sal","Laurel y tomillo","Tomate cabezón","Limón","1 cerveza","Ciruelas pasas para rellenar"],"preparation":["Condimente el lomo desde el día anterior. Ábralo, rellénelo con ciruelas pasas, llévelo al horno y báñelo durante la cocción con cerveza."],"tips":[],"source":"Parte 1, pág. 75 · R032","slug":"lomo-de-cerdo-relleno-version-sencilla"},{"id":"r039","title":"Chuletas de cerdo a la naranja","category":"Carnes y cerdo","ingredients":["3 chuletas de cerdo","7 cucharadas de cebolla cabezona picada","1 cucharada de mostaza","1 1/2 tazas de jugo de naranja","Ralladura de naranja","Perejil picado","2 cucharadas de crema de leche","Harina de trigo y caldo para espesar"],"preparation":["Desde el día anterior adobe las chuletas. El día de la preparación dórelas bien en aceite. Haga una salsa con agua y harina, caldo, crema de leche, naranja, cebolla y mostaza. Incorpore las chuletas y cocine unos 20 minutos. Al servir, agregue perejil picado."],"tips":[],"source":"Parte 1, pág. 78 · R033","slug":"chuletas-de-cerdo-a-la-naranja"},{"id":"r040","title":"Galantina","category":"Carnes y cerdo","ingredients":["1 gallina o pollo viejo","1 libra de carne de cerdo","1 libra de carne de res","1 libra de tocino magro","Vino y vinagre","Ajo, pimienta, comino, clavo, canela, nuez moscada, cebolla, orégano y sal"],"preparation":["Muela las carnes y sazónelas. Agregue vino y vinagre y deje reposar. Deshuese la gallina con cuidado de no romper el cuero; abra por encima, retire los huesos y rellene la piel con la mezcla de carnes. Cosa el cuero con hilo fuerte hasta volver a formar la gallina. Envuelva muy apretada en un trapo y cocine aproximadamente 3 horas. Saque, deje enfriar y prense durante una noche. Corte en rebanadas y sirva fría."],"tips":[],"source":"Parte 1, págs. 89-90 · R034","slug":"galantina"},{"id":"r041","title":"Carne al olivo","category":"Carnes y cerdo","ingredients":["1 libra de carne de res, pollo o cerdo","1 cebolla cortada en aros","1 pimentón verde o rojo","1 cucharada de aceite de oliva","1 taza de salsa de tomate","1 cubo Maggi o caldo de carne","2 cucharadas de harina de trigo","1 cucharada de albahaca picada","1 papa grande cortada en cuadros","Sal y pimienta"],"preparation":["Sofría en aceite la cebolla y el pimentón. Agregue la carne y deje dorar. Añada salsa de tomate, caldo y la harina disuelta. Incorpore la albahaca y la papa; cocine hasta que la carne y la papa estén en su punto. La anotación sugiere terminar en microondas durante varios minutos."],"tips":[],"source":"Parte 2, pág. 33 · R035","slug":"carne-al-olivo"},{"id":"r042","title":"Cabro","category":"Carnes y cerdo","ingredients":["Cabro en presa o entero","Orégano, laurel, tomillo, ajo y sal","Cebolla en rama","Manteca de cerdo","Achiote"],"preparation":["Cocine el cabro en una olla a presión con los aliños hasta que esté tierno. Déjelo reposar, páselo a una bandeja y cúbralo con un sofrito de manteca, achiote y cebolla. Lleve al horno para dorar."],"tips":[],"source":"Parte 2, pág. 35 · R036","slug":"cabro"},{"id":"r043","title":"Morcilla - fórmula grande","category":"Carnes y cerdo","ingredients":["Chunchullo fresco, sin grasa","Guineos","Sangre de vaca fresca","Cebolla, arroz y condimentos","Achiote y hierbas aromáticas"],"preparation":["Lave muy bien los intestinos y déjelos en remojo. Prepare el arroz y mezcle con los guineos, la sangre, la cebolla, las hierbas y los condimentos. Rellene sin apretar demasiado. Cocine en agua hirviendo hasta que, al pinchar, ya no salga sangre."],"tips":["La página indica una fórmula para cerca de 100 morcillas. Varias cantidades manuscritas no son completamente legibles y se conservan como referencia en el original."],"source":"Parte 2, pág. 36 · R037","slug":"morcilla-formula-grande"},{"id":"r044","title":"Tamales - fórmula grande","category":"Carnes y cerdo","ingredients":["5 libras de maíz blanquillo, sancochado","2 pollos grandes","2 libras de carne de cerdo","1 libra de mantequilla, usando parte para cocinar el maíz","1 libra de garbanzo","1 cebolla cabezona","Perejil, pimentón, ajo y guascas"],"preparation":["Prepare la masa de maíz y el guiso con los condimentos. Porcione en hojas, agregue pollo, cerdo, garbanzo y guiso, envuelva y cocine los tamales hasta que la masa y las carnes estén completamente cocidas."],"tips":["La página da los ingredientes principales, pero no registra el procedimiento completo."],"source":"Parte 2, pág. 37 · R038","slug":"tamales-formula-grande"},{"id":"r045","title":"Carne asada - “Pelao”","category":"Carnes y cerdo","ingredients":["Carne para asar","Sal, ajo seco y comino","Aceite o salsa para adobar"],"preparation":["Abra la carne sin dejarla muy delgada. Alíñela con sal, ajo seco y comino sin restregarla demasiado. Déjela reposar unas dos horas. Si hace falta, ajuste la sal antes de asarla."],"tips":[],"source":"Parte 2, pág. 47 · R039","slug":"carne-asada-pelao"},{"id":"r046","title":"Chateaubriand - lomo de res","category":"Carnes y cerdo","ingredients":["Tajadas de lomo de res de unos 3 cm","1 cucharadita de salsa Maggi o soya","Mantequilla","Sal y pimienta","1 cucharada de mantequilla con perejil picado","1 cucharadita de limón","2 dientes de ajo majados"],"preparation":["Adobe con anticipación con salsa Maggi, sal y pimienta. Caliente una sartén con mantequilla y dore las tajadas. Aparte bata mantequilla con unas gotas de limón, perejil, ajo, sal y pimienta, y sírvala sobre la carne."],"tips":[],"source":"Parte 2, pág. 71 · R040","slug":"chateaubriand-lomo-de-res"},{"id":"r047","title":"Lengua alcaparrada","category":"Carnes y cerdo","ingredients":["1 lengua grande","1 cebolla cabezona rallada","Jugo de limón","Aceitunas","2 copas de vino blanco","Pimienta y harina","2 cucharadas de mantequilla","Cebolla y perejil picados","2 cucharadas de alcaparras","1 tarro de champiñones","3 cucharadas de salsa de tomate","Caldo","1 cucharada de mostaza","Crema de leche"],"preparation":["Limpie muy bien la lengua y cocínela en olla a presión aproximadamente una hora. Pele y corte en tajadas al sesgo. Pase las tajadas por harina y dórelas. Para la salsa, sofría mantequilla, cebolla y perejil; agregue champiñones, vino, salsa de tomate, caldo, pimienta y mostaza. Cuando hierva, incorpore crema de leche sin dejarla hervir. Cubra la lengua con la salsa y lleve al horno alrededor de 30 minutos. Termine con perejil picado."],"tips":[],"source":"Parte 2, págs. 71-72 · R041","slug":"lengua-alcaparrada"},{"id":"r048","title":"Solomito - 12 personas","category":"Carnes y cerdo","ingredients":["1 solomito entero","3 cucharadas de aceite","3 cucharadas de cebolla picada","4 dientes de ajo","2 cucharadas de mostaza","1/2 taza de salsa de soya","Sal al gusto"],"preparation":["Limpie el solomito y dórelo en aceite con cebolla y ajo. Añada mostaza y salsa de soya. Páselo a una refractaria con sus jugos y lleve al horno precalentado entre 30 y 45 minutos. Corte en tajadas delgadas."],"tips":[],"source":"Parte 2, pág. 73 · R042","slug":"solomito-12-personas"},{"id":"r049","title":"Solomito con vinos - 10 personas","category":"Carnes y cerdo","ingredients":["3 libras de solomito","1/2 taza de aceite","1/2 taza de vino blanco","1/2 taza de vino tinto","1/2 taza de salsa negra","2 cucharadas de mostaza","2 cucharadas de harina de trigo","1 lata de crema de leche","1 libra de tocineta","Champiñones","Mantequilla"],"preparation":["Alíñe el solomito con anticipación, idealmente dos días, con aceite, vinos, salsa negra y mostaza. Lleve al horno con la salsa preparada y mantequilla, aproximadamente 30 minutos. Sirva con tiras de tocineta fritas pero no tostadas."],"tips":[],"source":"Parte 2, pág. 74 · R043","slug":"solomito-con-vinos-10-personas"},{"id":"r050","title":"Solomito con champiñones y tocineta - 20 personas","category":"Carnes y cerdo","ingredients":["4 1/2 libras de solomito","1 libra de tocineta","1 tarro de champiñones","1/2 pocillo de aceite","Salsa Perrins o salsa inglesa","Mostaza","Sal, ajo, pimienta y Maggi"],"preparation":["Limpie el solomito y alíñelo con aceite, salsa, mostaza, sal, ajo y pimienta. Déjelo reposar dos días. Hornee hasta que esté en su punto. Aparte sofría la tocineta apenas, mézclela con la salsa de champiñones y cubra el solomito al servir."],"tips":[],"source":"Parte 2, págs. 74-75 · R044","slug":"solomito-con-champinones-y-tocineta-20-personas"},{"id":"r051","title":"Albóndigón","category":"Carnes y cerdo","ingredients":["Carne de res molida","Carne de cerdo molida","Tocino finamente picado","Cebolla cabezona rallada","Ajo picado","Bizcocho o pan rallado","Huevos batidos","Zanahorias cocidas en tiras","Huevos cocidos","Mostaza","Perejil picado","Sal y pimienta"],"preparation":["Mezcle las carnes con tocino, cebolla, ajo, pan rallado, huevos, mostaza, perejil, sal y pimienta. Extienda la mezcla sobre un lienzo, coloque en el centro los huevos cocidos y la zanahoria, enrolle y lleve a un molde engrasado. Hornee alrededor de 350° por una hora. La anotación también propone cocinarlo envuelto y bien sellado en olla a presión."],"tips":[],"source":"Parte 2, pág. 70 · R045","slug":"albondigon"},{"id":"r052","title":"Pernil de cerdo asado","category":"Carnes y cerdo","ingredients":["1 pernil de cerdo de 12 a 15 libras","5 cebollas ralladas","1 taza de jugo de limón","1/2 taza de vinagre","Salsa Maggi o negra","10 dientes de ajo","1 taza de vino para cocinar","2 botellas de cerveza","2 cucharadas de mantequilla","3 cucharadas colmadas de mostaza","Sal, laurel, tomillo y orégano","Panela para el acabado"],"preparation":["Retire el exceso de grasa y haga perforaciones al pernil. Licúe o mezcle cebolla, ajo, mostaza, hierbas, salsa y sal; impregne bien y deje en adobo toda la noche. Ponga en una bandeja con mantequilla y hornee alrededor de 200° durante varias horas, volteando y bañando periódicamente. Hacia la mitad de la cocción retire exceso de líquido. Mezcle vino con cerveza y siga bañando hasta dorar. Al final puede barnizar con melado de panela y puntitos de mantequilla y volver al horno."],"tips":[],"source":"Parte 2, págs. 16-17 · R056","slug":"pernil-de-cerdo-asado"},{"id":"r053","title":"Suflé de carne molida","category":"Carnes y cerdo","ingredients":["1/2 libra de carne de cerdo","1/4 de libra de salchichón","3 huevos","1 rebanada de pan de sal","1/4 de litro de leche","Ajo al gusto","Tomate en cantidad generosa","Sal y pimienta al gusto"],"preparation":["Muela el salchichón junto con la carne.","Remoje el pan en la leche y desmenúcelo.","Mezcle la carne, el salchichón, el pan, los huevos, el ajo, el tomate, la sal y la pimienta.","Vierta en un molde engrasado y cocine al baño María durante aproximadamente 45 minutos, hasta que quede firme."],"tips":[],"source":"Parte 1, pág. 99 · R198 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"sufle-de-carne-molida"},{"id":"r054","title":"Pastel de carne / Pastel Chambray argentino","category":"Carnes y cerdo","ingredients":["1 libra de harina leudante","150 g de mantequilla","3 yemas","1/2 cucharadita de canela","3 cucharadas de azúcar","1 cucharadita de sal","1/2 taza de vino Oporto o similar","1 libra de carne molida","2 cucharadas de pimentón finamente picado","Orégano","50 g de mantequilla","2 cucharadas de aceite","1/2 taza de caldo de carne","50 g de uvas pasas","50 g de aceitunas verdes","2 huevos duros","2 cebollas picadas"],"preparation":["Prepare primero el relleno: sazone la carne y sofríala; agregue caldo y deje cocinar a fuego lento. Para la masa, trabaje harina con mantequilla y los demás ingredientes hasta integrar, forme dos porciones y deje reposar unos 10 a 15 minutos. Estire una parte y forre un molde engrasado y enharinado; coloque el relleno con huevo duro y aceitunas. Cubra con la segunda parte de masa y hornee alrededor de 200° unos 25 minutos. La página indica un acabado con claras batidas y azúcar que vuelve al horno para gratinar a fuego lento."],"tips":["Deje reposar el pastel unos minutos antes de cortarlo para que el relleno se asiente."],"source":"Parte 2, págs. 27-30 · R200 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"pastel-de-carne-pastel-chambray-argentino"},{"id":"r055","title":"Pechuga agridulce - 8 personas","category":"Pollo y aves","ingredients":["1 pechuga grande","3 salchichas ahumadas","2 cebollas cabezonas grandes","1/2 pimentón rojo y 1/2 amarillo o verde","2 pocillos de piña calada","1 pocillo de uvas pasas","Aceite de oliva","Salsa de soya","Salsa barbecue","Salsa de tomate"],"preparation":["Sofría la cebolla y el pimentón en aceite de oliva. Agregue la pechuga cortada en trozos y las salchichas. Incorpore la piña, las pasas y las salsas; deje cocinar hasta que todos los sabores se integren."],"tips":[],"source":"Parte 1, págs. 58 y 63-64 · R046","slug":"pechuga-agridulce-8-personas"},{"id":"r056","title":"Albóndigas / albondigón de pollo y cerdo - Jenny","category":"Pollo y aves","ingredients":["2 pechugas de pollo","2 libras de carne de cerdo","Hierbas y condimentos al gusto","Huevos cocidos para el centro"],"preparation":["Muela las carnes, alíñelas y forme un rollo sobre papel plástico tipo Vinipel. Coloque huevos cocidos en el centro, cierre muy bien y cocine aproximadamente una hora. Si se quiere, después se puede dorar o asar."],"tips":[],"source":"Parte 1, págs. 57 y 64 · R047","slug":"albondigas-albondigon-de-pollo-y-cerdo-jenny"},{"id":"r057","title":"Alitas de pollo","category":"Pollo y aves","ingredients":["8 alitas de pollo","2 cucharadas de melaza","4 dientes de ajo","2 cucharadas de jugo de limón","Aceite","Sal y pimienta"],"preparation":["Mezcle el adobo y deje las alitas tomando sabor. Áselas o fríalas hasta que estén cocidas y doradas."],"tips":[],"source":"Parte 1, pág. 43 · R048 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"alitas-de-pollo"},{"id":"r058","title":"Pastel de pollo","category":"Pollo y aves","ingredients":["2 bandejas de pechugas","2 bandejas de perniles","1/2 libra de jamón","1 1/2 libras de queso","1 lata de crema de leche","3 cucharadas de harina de trigo","1 pocillo del caldo de cocción del pollo","Salsa negra, curry y salsa de soya","Pimentón, cebolla cabezona y apio en rama"],"preparation":["Cocine el pollo con los condimentos, déjelo enfriar, deshuéselo y córtelo. Ralle el queso. Prepare una salsa con cebolla rallada, harina, sal, crema de leche y caldo de pollo. Mezcle el pollo, el jamón, la salsa y parte del queso procurando que quede jugoso. Vierta en un molde engrasado, cubra con queso y hornee a unos 350° durante 30 minutos."],"tips":[],"source":"Parte 1, págs. 37-38 · R049","slug":"pastel-de-pollo"},{"id":"r059","title":"Queso de pollo envuelto en jamón","category":"Pollo y aves","ingredients":["1 libra de pollo, pechuga o piernas","1 libra de carne de cerdo","Leche suficiente para cocinar las carnes","2 cucharadas de salsa de tomate","2 cucharadas de mostaza","3 cucharadas de mayonesa","4 dientes de ajo","1 frasco de alcaparras","1 sobre de gelatina sin sabor","Tomate en tajadas para forrar el molde"],"preparation":["Cocine las carnes en leche hasta que queden blancas; deje enfriar y desmenuce o muela. Sofría cebolla y ajo y mézclelos con el pollo y los demás ingredientes. Disuelva la gelatina primero en agua fría y luego en un poco de caldo de pollo. Engrase un molde y fórrelo con tajadas de tomate; vierta una capa de gelatina, luego la mezcla de pollo y deje cuajar."],"tips":[],"source":"Parte 1, págs. 79-80 · R050 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"queso-de-pollo-envuelto-en-jamon"},{"id":"r060","title":"Tortilla de pollo al horno - 5 personas","category":"Pollo y aves","ingredients":["1 pechuga grande","4 cucharaditas de jugo de limón","3 cucharaditas de aceite","1 cebolla picada","1 pimentón picado","300 g de papa cruda pelada y rallada","1 diente de ajo picado","2 tomates pelados y picados","3 huevos","1 cucharada de harina de trigo","Sal y pimienta"],"preparation":["Sofría cebolla y ajo; agregue pimentón y tomate. Desmenuce el pollo y mézclelo con el jugo de limón y la papa rallada. Bata ligeramente los huevos, incorpore la harina y mezcle todo. Lleve al horno alrededor de 250° durante unos 25 minutos."],"tips":[],"source":"Parte 2, pág. 23 · R051","slug":"tortilla-de-pollo-al-horno-5-personas"},{"id":"r061","title":"Pollo relleno - versión 1","category":"Pollo y aves","ingredients":["2 pollos adobados con tiempo","Hígados y menudencias","1 chorizo crudo","Apio en rama","Sal y pimienta"],"preparation":["Prepare el relleno con las menudencias, chorizo, apio y condimentos. Rellene los pollos, cósalos y espolvoree sal por encima. Lleve al horno; la anotación indica una cocción inicial a temperatura baja y luego una temperatura más alta para dorar."],"tips":[],"source":"Parte 1, págs. 94-95 · R052","slug":"pollo-relleno-version-1"},{"id":"r062","title":"Pollo relleno - versión 2","category":"Pollo y aves","ingredients":["1 pollo entero deshuesado","2 libras de carne molida","1 salchichón grande o una porción equivalente de salchichas","1 pan de sal","1 pocillo de leche","5 huevos","1 pimentón cortado en tiritas","1 cebolla cabezona rallada","Sal y pimienta al gusto"],"preparation":["Deshuese el pollo procurando conservar la piel entera y sazónelo.","Muela la carne y parte del embutido; pique el resto en trozos pequeños.","Remoje el pan en la leche y mezcle con la carne, los huevos, el pimentón y la cebolla.","Rellene el pollo, cosa la abertura y envuélvalo firmemente en papel celofán para cocina o en un lienzo limpio.","Amarre y cocine en agua a fuego suave durante unas 2 horas, volteándolo a mitad de cocción.","Deje enfriar bajo un peso ligero, envuelva en aluminio y refrigere antes de cortar. Si se desea, puede dorarse posteriormente."],"tips":[],"source":"Parte 2, págs. 37-38 · R053 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"pollo-relleno-version-2"},{"id":"r063","title":"Filete de pollo al gratín","category":"Pollo y aves","ingredients":["1 sobre de sopa de cebolla","Pan tajado de molde","Salchichón","2 pechugas de pollo","3 papas","2 huevos","Apio en rama picado","2 tomates medianos","Queso rallado"],"preparation":["Prepare una crema de cebolla espesa. Remoje el pan tajado en la crema. Sofría un poco el apio, pimentón o tomate, según la anotación. En un molde arme capas de pan, salchichón, papa cocida, pollo, crema de cebolla, vegetales, queso rallado y finalmente huevo en tajadas. Lleve al horno entre 15 y 20 minutos."],"tips":[],"source":"Parte 1, págs. 95-96 · R054","slug":"filete-de-pollo-al-gratin"},{"id":"r064","title":"Pechugas rellenas con salsa de cereza","category":"Pollo y aves","ingredients":["Pechugas deshuesadas","Salsa negra, ajo, sal y pimienta para adobar","Pan mojado en leche","Queso","Tocineta","Cerezas","Vino de cereza","Cebolla, laurel y tomillo","Harina de trigo para espesar la salsa"],"preparation":["Deshuese las pechugas y adóbelas. Rellene con pan mojado en leche, queso, tocineta y una cereza. Cocine en agua hirviendo aromatizada con vino de cereza, ajo, cebolla, sal, laurel y tomillo durante unos 30 minutos. Espese el líquido de cocción con harina de trigo y úselo como salsa."],"tips":[],"source":"Parte 1, pág. 97 · R055","slug":"pechugas-rellenas-con-salsa-de-cereza"},{"id":"r065","title":"Aguacates rellenos de pollo","category":"Pollo y aves","ingredients":["1 pechuga adobada con tiempo","Cebolla cabezona picada","Apio en rama","Perejil","Crema de leche","Mayonesa","Manzana picada","Aguacates"],"preparation":["Sofría la pechuga y desmenúcela. Mezcle con cebolla, apio, perejil, crema de leche, mayonesa y manzana. Parta los aguacates por la mitad y rellénelos con la mezcla."],"tips":[],"source":"Parte 1, págs. 85-86 · R194","slug":"aguacates-rellenos-de-pollo"},{"id":"r066","title":"Galantina de pollo al microondas","category":"Pollo y aves","ingredients":["2 pechugas de pollo sin piel","1 huevo","Sal y pimienta al gusto","4 a 6 tajadas de jamón","1/2 pimentón cortado en tiras","2 huevos duros","100 g de queso"],"preparation":["Procese o pique finamente las pechugas con el huevo, sal y pimienta.","Extienda la mezcla sobre plástico apto para alimentos formando un rectángulo.","Distribuya en el centro el jamón, las tiras de pimentón, el huevo duro y el queso.","Enrolle como un salchichón y cierre muy bien los extremos.","Coloque en un recipiente apto para microondas con unas cucharadas de agua y cocine entre 10 y 12 minutos a potencia alta, girándolo a mitad de cocción.","Deje reposar 5 minutos antes de desenvolver. El centro debe estar completamente cocido."],"tips":["El tiempo puede variar según la potencia del microondas; si hace falta, cocine en intervalos adicionales de 1 minuto."],"source":"Parte 2, pág. 60 · R202 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"galantina-de-pollo-al-microondas"},{"id":"r067","title":"Cazuela de bagre","category":"Pescados y mariscos","ingredients":["4 cucharadas de vino blanco","3 cucharadas de salsa negra","1 cucharada de color","1 cucharada de mantequilla","1 cucharadita de Trisazón","1/2 libra de cebolla en rama","1 libra de bagre en posta","5 tazas de agua","1/2 litro de leche","Maggi","4 tazas de tostado rallado","Cilantro","Sal al gusto"],"preparation":["Licúe la cebolla en una taza de agua. Viértala en una olla y agregue los demás ingredientes y el agua restante. Añada el bagre y, cuando hierva, revuelva y cocine alrededor de 10 minutos. Retire el pescado, cuele el caldo y deje enfriar el bagre; quite espinas y piel, desmenuce y vuelva a colar. Ponga nuevamente el caldo al fuego con el bagre, agregue Maggi, leche y tostado; revuelva constantemente. Cuando espese y esté listo, agregue cilantro y sirva."],"tips":[],"source":"Parte 1, pág. 1 · R057","slug":"cazuela-de-bagre"},{"id":"r068","title":"Cazuela mixta de bagre y camarón","category":"Pescados y mariscos","ingredients":["Bagre en cubos","Camarones limpios","Pimentón picado","Salsa negra","Mantequilla","Caldo hecho con recortes de bagre, Maggi, laurel, tomillo, orégano y apio","Leche","Harina de trigo","Vino blanco","Queso parmesano"],"preparation":["Por porción, sofría pimentón en mantequilla con un poco de salsa negra. Agregue bagre y camarones. Incorpore caldo de pescado. Mezcle leche con harina y añada para espesar. Termine con vino blanco y queso parmesano. Sirva bien caliente con arroz blanco y patacón."],"tips":["La anotación indica que 1 libra de bagre y 1 libra de camarón rinden aproximadamente 4 cazuelas."],"source":"Parte 2, pág. 24 · R058","slug":"cazuela-mixta-de-bagre-y-camaron"},{"id":"r069","title":"Aguacate con langostinos o camarones","category":"Pescados y mariscos","ingredients":["3 aguacates","1 libra de langostinos o camarones","3/4 de taza de mayonesa","1/4 de taza de salsa de tomate","1/4 cucharadita de salsa inglesa","1/2 cucharada de mostaza","Limones","Sal y pimienta"],"preparation":["Pele los camarones y cocínelos en agua hirviendo con sal, ajo machacado y jugo de limón durante unos 4 minutos. Escurra, añada limón y pimienta y deje reposar. Mezcle mayonesa, salsa de tomate, salsa inglesa y mostaza; incorpore los camarones. Rellene los aguacates y sirva sobre lechuga o con perejil."],"tips":[],"source":"Parte 1, pág. 39 · R059","slug":"aguacate-con-langostinos-o-camarones"},{"id":"r070","title":"Crema de atún","category":"Pescados y mariscos","ingredients":["1 sobre de crema de champiñones","3 tazas de leche","1 lata pequeña de arvejas","1 lata de atún","1 aguacate maduro"],"preparation":["Disuelva la crema de champiñones en la leche y en una taza del jugo de las arvejas. Cocine a fuego medio unos 10 minutos, cuidando que no se pegue. Escurra y desmenuce el atún; agréguelo con las arvejas y cocine 3 minutos más. Sirva con trocitos de aguacate."],"tips":["El recorte indica que rinde cinco porciones y que, si queda muy espesa, se puede añadir media taza de agua caliente."],"source":"Parte 1, pág. 92 · R060","slug":"crema-de-atun"},{"id":"r071","title":"Ensalada de atún","category":"Pescados y mariscos","ingredients":["2 latas de atún","1 cebolla cabezona rallada","2 cucharadas de perejil o cilantro picado","1 cucharada de mayonesa","1 cucharada de mostaza","2 cucharadas de alcaparras picadas","Hojas de lechuga"],"preparation":["Escurra y desmenuce el atún. Mezcle la cebolla, el perejil o cilantro, la mayonesa, la mostaza y las alcaparras. Revuelva con el atún y sirva sobre hojas de lechuga lavadas."],"tips":["La mezcla también sirve para rellenar aguacates, huevos duros o tomates."],"source":"Parte 1, pág. 94 · R061","slug":"ensalada-de-atun"},{"id":"r072","title":"Preparación de atún en recorte - incompleta","category":"Pescados y mariscos","ingredients":["2 latas de atún","6 rebanadas de pan molde","3 filetes de anchoas","2 huevos","1/4 de libra de queso blanco rallado"],"preparation":["Retire la grasa del atún y colóquelo en una vasija con los filetes de anchoa. Triture con un tenedor."],"tips":["El recorte está incompleto y no permite recuperar el resto de la preparación sin inventarlo."],"source":"Parte 1, pág. 93 · R062","slug":"preparacion-de-atun-en-recorte-incompleta"},{"id":"r073","title":"Pescado al horno","category":"Pescados y mariscos","ingredients":["Cualquier clase de pescado","Papa cocida en rodajas","Zanahoria en juliana delgada","Cebolla cabezona en juliana","Pimentón","Champiñones cortados","Perejil picado","Aceite de oliva","Jugo de limón","Vino","Caldo de verduras","Ajo","Sal, pimienta y estragón"],"preparation":["Forme primero una cama de papa sobre papel aluminio aceitado. Añada zanahoria, cebolla, pimentón y champiñones. Coloque el pescado encima y sazone con limón, vino, caldo, ajo, sal, pimienta y estragón. Cierre el papel aluminio y hornee a unos 180° por 20 minutos."],"tips":[],"source":"Parte 2, pág. 61 · R063","slug":"pescado-al-horno"},{"id":"r074","title":"Bolitas de atún","category":"Pescados y mariscos","ingredients":["2 tarros de atún","3 cucharadas de polvo o miga de bizcocho","2 cebollas cabezonas ralladas","Jugo de 2 limones","1/2 paquete de miga de bizcocho para empanar","1 clara de huevo","Aceite"],"preparation":["Escurra el atún, agregue jugo de limón, cebolla y tres cucharadas de miga de bizcocho. Mezcle, forme bolitas y aplástelas con la mano. Pase por clara de huevo medio batida y luego por miga de bizcocho. Fría en aceite caliente."],"tips":[],"source":"Parte 2, pág. 69 · R064","slug":"bolitas-de-atun"},{"id":"r075","title":"Salsa rosada","category":"Salsas, aderezos y acompañamientos","ingredients":["Cebolla en rama finamente picada","Salsa de tomate","Mayonesa","Zumo de limón","Picante","1 gota de salsa negra"],"preparation":["Revuelva todos los ingredientes y listo."],"tips":["La abuelita anotó: “Acompañarlos con un delicioso patacón”."],"source":"Parte 1, pág. 1 · R065","slug":"salsa-rosada"},{"id":"r076","title":"Salsa vinagreta clásica","category":"Salsas, aderezos y acompañamientos","ingredients":["1/4 de taza de vinagre","1/2 cucharadita de sal","1/4 cucharadita de pimienta","1 pizca de paprika","1/4 cucharadita de mostaza","1 pizca de azúcar","1 cucharada de perejil fresco picado","1/3 de taza de aceite"],"preparation":["Coloque en un recipiente el vinagre y los demás ingredientes, menos el aceite. Bata suavemente hasta que se mezclen y luego vaya añadiendo el aceite poco a poco hasta lograr una emulsión cremosa."],"tips":["Puede guardarse en un frasco tapado en la nevera hasta por tres días."],"source":"Parte 2, pág. 7 · R066","slug":"salsa-vinagreta-clasica"},{"id":"r077","title":"Salsa chimichurri - versión rápida","category":"Salsas, aderezos y acompañamientos","ingredients":["Perejil picado muy finamente","Sal y pimienta","Unas gotas de vinagre balsámico","Aceite de oliva","Ajo muy finamente picado","Orégano"],"preparation":["Revuelva todo y bata ligeramente. Sirve para carnes y pollo asados."],"tips":[],"source":"Parte 2, pág. 7 · R067","slug":"salsa-chimichurri-version-rapida"},{"id":"r078","title":"Salsa tártara","category":"Salsas, aderezos y acompañamientos","ingredients":["1 cucharada de alcaparras escurridas","1 cucharada de pepinillos encurtidos","1 cucharada de perejil picado","1 taza de mayonesa","1 cucharadita de jugo de limón","Sal y pimienta al gusto"],"preparation":["Pique finamente las alcaparras y los pepinillos. Mezcle con perejil y mayonesa. Añada el jugo de limón y sazone con sal y pimienta."],"tips":["Opcional: añadir un huevo duro picadito. Dura hasta una semana en la nevera en frasco bien tapado, no metálico."],"source":"Parte 2, pág. 8 · R068","slug":"salsa-tartara"},{"id":"r079","title":"Salsa chimichurri - con vino","category":"Salsas, aderezos y acompañamientos","ingredients":["1/2 taza de vino blanco seco","2 cucharadas de vinagre","4 dientes de ajo picados","2 cucharadas de cilantro picado","2 cucharadas de perejil picado","2 cucharadas de cebolla blanca picada","2 cucharadas de aceite","Sal y pimienta"],"preparation":["Mezcle o licúe todos los ingredientes excepto el aceite. Bata y añada el aceite poco a poco."],"tips":[],"source":"Parte 2, pág. 9 · R069","slug":"salsa-chimichurri-con-vino"},{"id":"r080","title":"Salsa golf","category":"Salsas, aderezos y acompañamientos","ingredients":["4 cucharadas de mayonesa","1/2 cucharadita de mostaza","1/2 taza de salsa de tomate","1 cucharadita de jugo de limón","Pimienta"],"preparation":["Bata la mayonesa, agregue la mostaza, luego la salsa de tomate y finalmente el limón y la pimienta. Sirve con camarones, langostinos, carnes o verduras."],"tips":[],"source":"Parte 2, págs. 9-10 · R070","slug":"salsa-golf"},{"id":"r081","title":"Salsa inglesa dulce para postres","category":"Salsas, aderezos y acompañamientos","ingredients":["3 tazas de leche entera","4 cucharaditas rasas de maicena","2/3 de taza de azúcar","4 yemas de huevo","Vainilla, opcional"],"preparation":["Separe un poco de leche y disuelva allí la maicena. Hierva el resto de la leche; agregue la maicena disuelta y cocine revolviendo hasta que espese. Bata las yemas y vaya añadiendo poco a poco varias cucharaditas de la mezcla caliente para templarlas. Devuelva las yemas a la olla, agregue el azúcar y cocine sin dejar de revolver. Si desea, añada vainilla."],"tips":["Para una salsa más espesa, aumente la maicena."],"source":"Parte 2, págs. 10-11 · R071","slug":"salsa-inglesa-dulce-para-postres"},{"id":"r082","title":"Pasta básica para salsas calientes","category":"Salsas, aderezos y acompañamientos","ingredients":["Mantequilla","Harina de trigo, en la misma proporción","Caldo de carne, pollo o pescado, leche o vino"],"preparation":["Derrita la mantequilla e incorpore la harina, revolviendo constantemente. Para una salsa clara cocine poco tiempo; para una salsa más oscura deje dorar un poco más. Agregue el líquido elegido y lleve a hervor hasta obtener una salsa lisa."],"tips":["La anotación da como guía una cucharada de harina por cada taza de caldo."],"source":"Parte 2, pág. 11 · R072","slug":"pasta-basica-para-salsas-calientes"},{"id":"r083","title":"Salsa blanca o bechamel","category":"Salsas, aderezos y acompañamientos","ingredients":["2 cucharadas de mantequilla","1 1/2 a 2 cucharadas de harina de trigo","1 taza de leche","1 cebolla blanca mediana con 2 clavos de olor","1 hoja de laurel","Sal y pimienta"],"preparation":["Derrita la mantequilla a fuego bajo. Agregue la harina y cocine unos minutos sin dejar que se queme. Añada la leche tibia poco a poco, revolviendo hasta que quede lisa y espesa. Agregue la cebolla con clavos, el laurel, sal y pimienta; cocine suavemente y retire los aromáticos."],"tips":[],"source":"Parte 2, pág. 12 · R073","slug":"salsa-blanca-o-bechamel"},{"id":"r084","title":"Salsa Mornay","category":"Salsas, aderezos y acompañamientos","ingredients":["1 taza de salsa bechamel","1 yema de huevo","2 cucharadas de crema de leche","2 cucharadas de queso parmesano o rallado"],"preparation":["A la bechamel caliente agregue la yema, la crema de leche y el queso, mezclando hasta que quede homogénea."],"tips":[],"source":"Parte 2, pág. 12 · R074","slug":"salsa-mornay"},{"id":"r085","title":"Salsa barbecue","category":"Salsas, aderezos y acompañamientos","ingredients":["Jugo de limón","Salsa inglesa","Salsa de tomate","Mantequilla","Aceite","Cebolla rallada","Ajo picado","Salsa de soya","Agua","Pimentón rojo","Vinagre","Panela rallada","Mostaza","Sal y pimienta"],"preparation":["Sofría cebolla y ajo en mantequilla y aceite. Añada los demás ingredientes, excepto el limón, y cocine a fuego bajo aproximadamente 30 minutos. Incorpore el jugo de limón al final. Use para barnizar carnes o aves durante la cocción a la brasa o al carbón."],"tips":["Algunas cantidades de la lista original están superpuestas y no se leen con total certeza."],"source":"Parte 2, págs. 13-14 · R075","slug":"salsa-barbecue"},{"id":"r086","title":"Salsa básica para pizza - segunda versión","category":"Salsas, aderezos y acompañamientos","ingredients":["2 tomates maduros pelados y sin corazón","3 cebollas en tajadas","Hierbas finas, como orégano y tomillo","6 dientes de ajo","1 cucharadita de sal","Azúcar y pimienta al gusto","Carne molida o frita, opcional"],"preparation":["Ponga los ingredientes al fuego, excepto la carne, y deje cocinar hasta que la salsa espese. Licúe y, si se desea, mezcle con carne ya cocinada."],"tips":[],"source":"Parte 2, pág. 15 · R076","slug":"salsa-basica-para-pizza-segunda-version"},{"id":"r087","title":"Salsa mayonesa","category":"Salsas, aderezos y acompañamientos","ingredients":["4 yemas de huevo","1 taza de aceite de oliva o girasol","1/2 cucharadita de sal, o al gusto","1 cucharada de vinagre","1 cucharadita de mostaza","Un poco de azúcar y pimienta blanca","Gotas de limón"],"preparation":["En licuadora ponga yemas, vinagre, sal, pimienta, azúcar y mostaza. Con la máquina funcionando, agregue el aceite en hilo fino hasta que espese. Añada unas gotas de limón para ayudar a que no se corte. Si queda muy espesa, suavice con un poco de agua."],"tips":["Si se corta, la anotación aconseja incorporar dos cucharadas de agua hirviendo. Para mariscos se puede añadir un poco de coñac."],"source":"Parte 2, pág. 18 · R077","slug":"salsa-mayonesa"},{"id":"r088","title":"Salsa de mora","category":"Salsas, aderezos y acompañamientos","ingredients":["Moras","Azúcar","Vino","Mantequilla","Maicena, si hace falta espesar"],"preparation":["Cocine las moras con azúcar, vino y un poco de mantequilla. Deje reducir y, si hace falta, espese con maicena. Sirve para cerdo, pato y otras carnes."],"tips":[],"source":"Parte 2, pág. 21 · R078","slug":"salsa-de-mora"},{"id":"r089","title":"Salsa de naranja","category":"Salsas, aderezos y acompañamientos","ingredients":["Jugo de naranja","Ralladura de naranja","Azúcar","Canela al gusto","Vino blanco","Mantequilla o base de salsa"],"preparation":["Prepare como la salsa de mora: cocine y reduzca, agregando la ralladura de naranja, canela y vino blanco al gusto."],"tips":[],"source":"Parte 2, pág. 21 · R079","slug":"salsa-de-naranja"},{"id":"r090","title":"Salsa de ciruelas","category":"Salsas, aderezos y acompañamientos","ingredients":["Ciruelas pasas","Vino tinto","Azúcar","Canela","Nuez moscada","1 taza de vinagre"],"preparation":["Cocine los líquidos, azúcar y especias hasta que la salsa reduzca. Agregue las ciruelas partidas al final y deje que se integren sin deshacerse completamente."],"tips":[],"source":"Parte 2, pág. 21 · R080","slug":"salsa-de-ciruelas"},{"id":"r091","title":"Salsa hawaiana","category":"Salsas, aderezos y acompañamientos","ingredients":["Papaya","Piña","Jugo de naranja","Uvas pasas","Frutas mixtas al natural","Mermelada de ciruela","Clavos de olor","Vino blanco o rosado","Un vasito de vinagre","Maicena, opcional"],"preparation":["Cocine los ingredientes hasta integrar los sabores. Si la salsa queda muy líquida, espésela con un poco de maicena."],"tips":[],"source":"Parte 2, pág. 22 · R081","slug":"salsa-hawaiana"},{"id":"r092","title":"Salsa de manzana","category":"Salsas, aderezos y acompañamientos","ingredients":["1 kilo de manzanas","1/4 de libra de azúcar","1 astilla de canela","Vino blanco"],"preparation":["Pele y corte las manzanas. Cocínelas con azúcar, canela y vino hasta que se deshagan en forma de puré. Sirve para cerdo o pato."],"tips":[],"source":"Parte 2, pág. 22 · R082","slug":"salsa-de-manzana"},{"id":"r093","title":"Secretos de las salsas","category":"Salsas, aderezos y acompañamientos","ingredients":[],"preparation":["Si una salsa se corta por un ingrediente ácido, déjela reposar y licúela nuevamente con una cucharada de agua fría. Para evitar grumos, cocine a fuego medio y no deje de revolver. Una forma clásica de preparar salsas es derretir mantequilla, incorporar harina, batir constantemente y luego añadir leche o agua caliente; al final se agregan crema, condimentos y yema batida. Si una salsa queda muy líquida, agregue harina de trigo; si queda demasiado espesa, licúe con caldo o leche. Las salsas sobrantes pueden conservarse tapadas en la nevera varios días; algunas también pueden congelarse si no contienen crema de leche. Para realzar una salsa desabrida puede añadirse caldo de carne; para oscurecerla, un poco de quemado de panela."],"tips":[],"source":"Parte 1, pág. 92 · R083","slug":"secretos-de-las-salsas"},{"id":"r094","title":"Leche de soya - método del cuaderno","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Soya","Agua caliente","Sal y limón, si se hará queso","Zanahoria y canela, si se desea saborizar la leche"],"preparation":["Remoje la soya desde el día anterior. Al día siguiente vierta agua caliente para retirar la cáscara. Licúe bien y cuele por un trapo. Cocine la leche obtenida aproximadamente 20 minutos. Para hacer queso, añada sal y limón para que cuaje; cuele en un trapo y escurra. Si se va a tomar como leche, puede hervirse con un pedazo de zanahoria y canela para mejorar el sabor."],"tips":[],"source":"Parte 1, pág. 52 · R084","slug":"leche-de-soya-metodo-del-cuaderno"},{"id":"r095","title":"Recetas para preparar leche de soya - recorte antiguo","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":[],"preparation":["El cuaderno conserva un recorte mecanografiado con cuatro recetas para preparar leche de soya. El método general consiste en remojar la soya, licuarla con agua, cocinarla, colarla y utilizar el líquido como leche. Varias versiones agregan azúcar, limón, canela, vainilla u otros saborizantes. También se menciona aprovechar la pulpa o residuo."],"tips":["Se conserva aquí como recorte de referencia del libro original."],"source":"Parte 1, págs. 3-4 · R085","slug":"recetas-para-preparar-leche-de-soya-recorte-antiguo"},{"id":"r096","title":"Mantequilla de soya","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Queso de soya","Leche de soya","1 papa pequeña cocida","Sal","Aceite de oliva"],"preparation":["Prepare primero queso de soya. Licúelo con unas cucharadas de leche de soya y una papa pequeña cocida. Agregue sal y aceite de oliva; licúe hasta que quede espeso, añadiendo el aceite poco a poco al final."],"tips":[],"source":"Parte 1, pág. 51 · R086","slug":"mantequilla-de-soya"},{"id":"r097","title":"Mayonesa de soya","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Mantequilla de soya","Jugo de 1 limón"],"preparation":["Prepare la mantequilla de soya y agregue jugo de limón. Mezcle hasta obtener una consistencia de mayonesa."],"tips":[],"source":"Parte 1, pág. 51 · R087","slug":"mayonesa-de-soya"},{"id":"r098","title":"Salchichón de soya","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Arroz","Soya","Tomate","Ajo","Zanahoria","Pimentón","Orégano","Cebolla","Sal","Plátano","Pimienta","Achiote o remolacha, opcional, para dar color"],"preparation":["Haga un guiso con los aliños. Muela la soya con el arroz, la cebolla y los demás ingredientes. Amase muy bien y ajuste la sal. Forme los salchichones, envuélvalos en bolsa plástica, papel celofán, hoja de plátano o papel aluminio y cocine al baño María aproximadamente 2 horas."],"tips":[],"source":"Parte 1, pág. 52 · R088","slug":"salchichon-de-soya"},{"id":"r099","title":"Germinados o raíces chinas","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Semillas de alfalfa, ajonjolí, soya, lenteja, garbanzo, girasol u otras"],"preparation":["Ponga en un frasco de boca ancha 1 1/2 cucharadas de semillas pequeñas o 3 cucharadas si son grandes. Añada agua y deje una noche. Al día siguiente escurra y tape con un lienzo húmedo amarrado a la boca del frasco. Mantenga en un lugar fresco y oscuro, sin luz solar. Cada tres horas aproximadamente lave y vuelva a escurrir. A los 3 o 4 días, cuando hayan germinado, exponga al sol cerca de una hora para que tomen color verde. Úselos en ensaladas, arroces, sándwiches o pan."],"tips":[],"source":"Parte 1, pág. 53 · R089","slug":"germinados-o-raices-chinas"},{"id":"r100","title":"Ensalada de frutas","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["1 tarro de duraznos en almíbar","1 queso campesino o doble crema","3 manzanas verdes","Crema de leche","Un poco del almíbar de los duraznos"],"preparation":["Pique todo en cuadros. Mezcle la crema de leche con un poco del almíbar de los duraznos y una con la fruta y el queso. Sirva fría."],"tips":[],"source":"Parte 1, págs. 55 y 63 · R090","slug":"ensalada-de-frutas"},{"id":"r101","title":"Deliciosa ensalada especial - 10 personas","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["1 tarro de duraznos en conserva","3 manzanas verdes","1 queso campesino","Crema de leche","Un poco de almíbar de durazno"],"preparation":["Pique los duraznos, las manzanas y el queso en cuadritos. Bata o mezcle la crema de leche con un poco de almíbar y una todo."],"tips":["La abuelita la marcó como especial para Navidad y fechas especiales."],"source":"Parte 1, pág. 63 · R091","slug":"deliciosa-ensalada-especial-10-personas"},{"id":"r102","title":"Deliciosa ensalada","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Lechuga Batavia","Repollo","Duraznos","Manzanas verdes","Uvas verdes","Maní","Piña picada, opcional","Crema de leche","Mayonesa","Apio muy bien picado"],"preparation":["Lave y pique los ingredientes. Mezcle con crema de leche y mayonesa, ajuste al gusto y refrigere antes de servir."],"tips":[],"source":"Parte 2, pág. 19 · R092","slug":"deliciosa-ensalada"},{"id":"r103","title":"Ensalada de repollo con piña","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Repollo","Piña","Manzana verde","Crema de leche","Queso doble crema o campesino"],"preparation":["Pique el repollo finamente y páselo brevemente por agua caliente; escurra y añada limón. Corte la manzana y la piña en cuadros, agregue el queso y mezcle con crema de leche. Sirva fría."],"tips":[],"source":"Parte 2, pág. 20 · R093","slug":"ensalada-de-repollo-con-pina"},{"id":"r104","title":"Ensalada de repollo - segunda versión","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Repollo finamente picado","Piña en cuadritos","Uvas pasas","Crema de leche","Mayonesa","Mostaza","Unas gotas de vinagre"],"preparation":["Mezcle todos los ingredientes y deje una hora en frío. Puede servirse con queso."],"tips":[],"source":"Parte 2, pág. 20 · R094","slug":"ensalada-de-repollo-segunda-version"},{"id":"r105","title":"Deliciosa ensalada de mango","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Lechuga desmechada","Mango pintón","Jugo de naranja o limón","Sal y pimienta","Vinagre o vinagre balsámico","Champiñones blancos","Tomate y cebolla picados"],"preparation":["Mezcle la lechuga y el mango, sazone con jugo cítrico, sal y pimienta y deje reposar en la nevera. Agregue vinagre o balsámico y termine con champiñones, tomate y cebolla finamente picados."],"tips":[],"source":"Parte 2, pág. 68 · R095","slug":"deliciosa-ensalada-de-mango"},{"id":"r106","title":"Ensalada Nena","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Lechuga","Mango pintón","Pimentón","Pepino","Tomate","Queso amarillo","Champiñones, opcional"],"preparation":["Pique los ingredientes y mézclelos. Sirva fresca."],"tips":[],"source":"Parte 2, pág. 68 · R096","slug":"ensalada-nena"},{"id":"r107","title":"Ají de la cazuela","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["Salsa rosada preparada","Cebolla finamente picada","Ají","Un toque de agua"],"preparation":["Prepare una salsa rosada. Agregue cebolla finamente picada, ají y un toque de agua hasta dejar el punto deseado."],"tips":[],"source":"Parte 2, pág. 68 · R097","slug":"aji-de-la-cazuela"},{"id":"r108","title":"Calabazón al horno","category":"Ensaladas, vegetales y preparaciones con soya","ingredients":["3 calabazas medianas","3 cucharadas de mantequilla","1 cebolla cabezona rallada","2 cucharadas de aceite","4 cucharadas de crema de leche","1/2 taza de pasta o salsa de tomate","1 pocillo de agua","1/2 libra de carne molida","Queso rallado","Ajo, sal y pimienta al gusto"],"preparation":["Cocine la calabaza hasta que esté tierna pero firme y córtela en tajadas.","Derrita la mantequilla y sofría el ajo y la cebolla. Pase por esta mezcla las tajadas de calabaza ya cocidas y reserve.","Cocine la carne con la salsa de tomate y el pocillo de agua; sazone con sal y pimienta.","En un molde, coloque una capa de calabaza, otra de la salsa de carne y repita las capas.","Cubra con queso rallado y lleve al horno durante unos 30 minutos, hasta que gratine."],"tips":[],"source":"Parte 1, págs. 96-97 · R196 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"calabazon-al-horno"},{"id":"r109","title":"Natilla antioqueña","category":"Postres fríos, natillas y bebidas","ingredients":["1/4 de libra de mantequilla","3 litros de leche","1 coco o uvas pasas","1/2 panela blanca","1 cajita de maicena, equivalente a unos 2 pocillos"],"preparation":["Ponga a hervir la leche con la panela. Agregue coco o pasas. Disuelva la maicena en leche fría y añádala poco a poco, revolviendo constantemente hasta que la mezcla espese y despegue de la olla. Vierta en una bandeja y deje enfriar."],"tips":[],"source":"Parte 1, pág. 20 · R098","slug":"natilla-antioquena"},{"id":"r110","title":"Natilla - Rosita Ulloa","category":"Postres fríos, natillas y bebidas","ingredients":["2 litros de leche","2 pocillos de maicena","1/2 barra de mantequilla","Canela al gusto","1/2 libra de panela","Uvas pasas al gusto"],"preparation":["Disuelva la maicena en parte de la leche. Caliente el resto con panela, canela y mantequilla; añada la maicena disuelta y revuelva hasta que espese. Agregue pasas y deje cuajar."],"tips":[],"source":"Parte 1, pág. 55 · R099 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"natilla-rosita-ulloa"},{"id":"r111","title":"Natilla - versión corta","category":"Postres fríos, natillas y bebidas","ingredients":["4 pocillos de leche","1 pocillo de maicena","1/8 de libra de mantequilla","1/4 de libra de panela","Canela al gusto","Uvas pasas al gusto"],"preparation":["Disuelva la maicena en leche fría. Cocine con el resto de la leche, panela y canela, revolviendo hasta espesar. Incorpore mantequilla y pasas."],"tips":[],"source":"Parte 1, pág. 56 · R100 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"natilla-version-corta"},{"id":"r112","title":"Sabajón","category":"Postres fríos, natillas y bebidas","ingredients":["3 litros de leche","2 cajas de flan","1 tarro de leche condensada","Aguardiente al gusto"],"preparation":["Prepare el flan y deje enfriar. Licúe con la leche condensada y agregue aguardiente al gusto."],"tips":[],"source":"Parte 1, pág. 58 · R101","slug":"sabajon"},{"id":"r113","title":"Sabajón - segunda versión","category":"Postres fríos, natillas y bebidas","ingredients":["3 cajas de flan Royal","6 pocillos de leche","1 tarro de leche condensada","Aguardiente, ron o brandy al gusto"],"preparation":["Prepare el flan con la leche. Cuando esté cuajado o frío, licúe con leche condensada y el licor elegido."],"tips":[],"source":"Parte 2, pág. 35 · R102","slug":"sabajon-segunda-version"},{"id":"r114","title":"Postre de maracuyá","category":"Postres fríos, natillas y bebidas","ingredients":["1 lata grande de crema de leche","1 lata grande de leche condensada","1/2 taza de leche entera","2 sobres de gelatina sin sabor","Galletas dulces, opcional","250 ml de jugo concentrado de maracuyá","Pulpa de 2 maracuyás para decorar","1 cucharada de maicena"],"preparation":["Licúe crema de leche, leche condensada, leche y jugo de maracuyá. Disuelva la gelatina en agua caliente e incorpórela al batido. Si se desea, coloque galletas dulces en el fondo del molde. Vierta la mezcla y refrigere unas 3 horas. Decore con pulpa de maracuyá."],"tips":[],"source":"Parte 1, pág. 68 · R103","slug":"postre-de-maracuya"},{"id":"r115","title":"Postre de maracuyá o curuba - versión antigua","category":"Postres fríos, natillas y bebidas","ingredients":["Jugo de maracuyá o curuba","Crema de leche","Azúcar","Gelatina sin sabor"],"preparation":["Prepare una crema con la fruta, la crema de leche y el azúcar. Incorpore gelatina disuelta y lleve a un molde. Refrigere hasta que cuaje y desmolde con cuidado."],"tips":["La página está parcialmente cubierta; algunas cantidades no son legibles."],"source":"Parte 1, pág. 26 · R104","slug":"postre-de-maracuya-o-curuba-version-antigua"},{"id":"r116","title":"Postre rápido de mora / esponjado","category":"Postres fríos, natillas y bebidas","ingredients":["1/2 libra de mora","1/2 libra de azúcar","4 claras de huevo"],"preparation":["Bata las claras y vaya incorporando mora y azúcar hasta obtener una mezcla espesa y esponjosa. Refrigere antes de servir."],"tips":[],"source":"Parte 1, pág. 27 · R105","slug":"postre-rapido-de-mora-esponjado"},{"id":"r117","title":"Postre de yogur","category":"Postres fríos, natillas y bebidas","ingredients":["1 tarro de leche condensada","2 tarros de yogur de fruta","1 lata o tarro de duraznos","7 huevos"],"preparation":["Separe las claras de las yemas.","Bata las claras a punto de nieve e incorpore las yemas una a una.","Agregue el durazno picado y el yogur.","Incorpore la leche condensada con movimientos suaves.","Vierta en un recipiente y lleve a la nevera varias horas, hasta que esté bien frío y tome consistencia."],"tips":["Reserve un poco del almíbar de los duraznos para ajustar la textura únicamente si la mezcla queda demasiado espesa."],"source":"Parte 1, pág. 27 · R106 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"postre-de-yogur"},{"id":"r118","title":"Postre de deditos","category":"Postres fríos, natillas y bebidas","ingredients":["1 caja de pudín de vainilla","1 lata de melocotones","1 taza de crema de leche","1/2 caja de galletas deditos","Almendras"],"preparation":["Prepare el pudín usando el almíbar de los melocotones como parte del líquido. Cocine a fuego lento y deje enfriar. Agregue la crema de leche y los melocotones picados. En un molde alterne galletas y crema; termine con almendras tostadas y picadas."],"tips":[],"source":"Parte 1, pág. 41 · R107","slug":"postre-de-deditos"},{"id":"r119","title":"Postre de leche","category":"Postres fríos, natillas y bebidas","ingredients":["1 lata grande de leche condensada","1 lata grande de crema de leche","1 lata grande de leche de vaca","4 huevos","2 cucharadas de maicena","1 cucharada de vainilla"],"preparation":["Licúe todos los ingredientes. Vierta en molde y cocine al baño María, preferiblemente en horno, hasta que cuaje."],"tips":[],"source":"Parte 1, pág. 48 · R108","slug":"postre-de-leche"},{"id":"r120","title":"Postre de cuajada y mora","category":"Postres fríos, natillas y bebidas","ingredients":["2 libras de cuajada fresca","1 libra de moras","1 libra de azúcar","2 tarros grandes de leche condensada","10 huevos"],"preparation":["Licúe la cuajada con los huevos y la leche condensada. Vierta en una refractaria engrasada y hornee alrededor de 250° por aproximadamente una hora, hasta que el cuchillo salga limpio. Cocine las moras con el azúcar para hacer una salsa y viértala sobre el postre."],"tips":[],"source":"Parte 2, págs. 31 y 48 · R109","slug":"postre-de-cuajada-y-mora"},{"id":"r121","title":"Delicioso helado de coco","category":"Postres fríos, natillas y bebidas","ingredients":["2 cucharadas colmadas de maicena","3/4 de pocillo de azúcar","2 pocillos de leche","1 yema de huevo","1/2 pocillo de coco rallado","1 clara de huevo batida a punto de nieve","2 astillas de canela"],"preparation":["Mezcle maicena, azúcar, leche, canela, yema y coco. Cocine revolviendo hasta que espese y hierva unos 2 minutos. Deje enfriar e incorpore la clara a punto de nieve. Lleve al congelador. Cuando empiece a cuajar, licúe durante unos 2 minutos y vuelva a congelar; repita este proceso dos veces para que quede cremoso."],"tips":[],"source":"Parte 2, pág. 39 · R110","slug":"delicioso-helado-de-coco"},{"id":"r122","title":"Helados San Gerónimo","category":"Postres fríos, natillas y bebidas","ingredients":["1 kilo de pulpa de fruta, solo el extracto","10 cucharadas de leche en polvo","1 litro de yogur de melocotón o del sabor de la fruta","6 cucharadas de azúcar"],"preparation":["Licúe todos los ingredientes y congele. Puede hacerse con otras frutas usando el yogur del mismo sabor."],"tips":[],"source":"Parte 2, pág. 47 · R111","slug":"helados-san-geronimo"},{"id":"r123","title":"Helado de mantecado - vasitos","category":"Postres fríos, natillas y bebidas","ingredients":["16 tazas rasas de azúcar","8 tazas de leche descremada","2 tarros rasos de leche en polvo","7 cucharadas de estabilizador para helados","Color y esencia de almendras al gusto","8 huevos"],"preparation":["Mezcle el azúcar, la leche descremada, la leche en polvo y el estabilizador hasta que no queden grumos.","Agregue el color y la esencia de almendras al gusto.","Bata los huevos e incorpórelos a la mezcla.","Procese en máquina de helados hasta obtener una textura cremosa y firme.","Sirva en vasitos y mantenga congelado."],"tips":["Es una fórmula de producción grande; conserve las proporciones si desea preparar una cantidad menor."],"source":"Parte 1, pág. 81 · R112 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"helado-de-mantecado-vasitos"},{"id":"r124","title":"Postre de las tres leches","category":"Postres fríos, natillas y bebidas","ingredients":["1 tarro grande de leche condensada","1 tarro grande de crema de leche","1 tarro de leche de vaca","3 huevos","3 cucharadas rasas de maicena","1 cucharada de vainilla"],"preparation":["Licúe todos los ingredientes. Coloque en una refractaria con mantequilla o caramelo y lleve al horno hasta que, al introducir un cuchillo, salga limpio. También puede cocinarse al baño María."],"tips":[],"source":"Parte 2, pág. 64 · R113","slug":"postre-de-las-tres-leches"},{"id":"r125","title":"Quesillo de ahuyama / postre","category":"Postres fríos, natillas y bebidas","ingredients":["3/4 de kilo de ahuyama previamente cocida","3/4 de taza de pan rallado","5 huevos","1 lata grande de leche condensada","1 1/2 tazas de leche","2 cucharaditas de vainilla"],"preparation":["Engrase un molde. Mezcle o licúe todos los ingredientes y vierta en el molde. Cocine al baño María en horno a unos 350 °F por 45 minutos."],"tips":[],"source":"Parte 2, pág. 58 · R114","slug":"quesillo-de-ahuyama-postre"},{"id":"r126","title":"Torta-cuajada o quesillo al baño María","category":"Postres fríos, natillas y bebidas","ingredients":["1 tarro de leche condensada","1 tarro de leche de vaca","6 huevos","200 g de cuajada o queso","Esencia de vainilla"],"preparation":["Mezcle o licúe todo y lleve al horno al baño María hasta que cuaje."],"tips":[],"source":"Parte 2, pág. 58 · R115","slug":"torta-cuajada-o-quesillo-al-bano-maria"},{"id":"r127","title":"Cómo batir la pasta esponjosa","category":"Tortas, bizcochos y repostería","ingredients":[],"preparation":["Bata las yemas con el azúcar hasta que tengan punto de cordón, es decir, hasta que al levantar el batidor la mezcla caiga formando figuras. Agregue la harina poco a poco. Bata las claras hasta formar picos y vaya incorporando a ellas, con movimiento envolvente, la mezcla de yemas y harina. Vierta en los moldes y hornee."],"tips":["Este apunte aparece como técnica previa a las fórmulas de pasta esponjosa."],"source":"Parte 1, págs. 7-8 · R116","slug":"como-batir-la-pasta-esponjosa"},{"id":"r128","title":"Pasta esponjosa para decorar ponqués","category":"Tortas, bizcochos y repostería","ingredients":["6 huevos","350 g de harina de trigo","250 g de azúcar","15 cucharadas de agua hirviendo","1 cucharadita de vainilla","1/4 de cucharadita de sal","1 cucharadita de polvo Royal"],"preparation":["Bata las yemas; agregue el azúcar poco a poco hasta que tengan punto de cordón. Añada, una por una, las 15 cucharadas de agua hirviendo, sin dejar de batir. Incorpore la vainilla y la harina cernida con el polvo Royal y la sal. Aparte bata las claras a punto de nieve e incorpórelas con movimiento envolvente. Vierta en molde engrasado y enharinado y hornee a temperatura moderada."],"tips":[],"source":"Parte 1, pág. 9 · R117","slug":"pasta-esponjosa-para-decorar-ponques"},{"id":"r129","title":"Pasta económica - primera fórmula","category":"Tortas, bizcochos y repostería","ingredients":["100 g de mantequilla","100 g de manteca vegetal","200 g de azúcar","350 g de harina de trigo","3 huevos","1 cucharadita de sal","1 cucharada de vainilla","Leche, la necesaria"],"preparation":["Bata mantequilla y manteca con parte del azúcar. Añada las yemas hasta que la mezcla esté cremosa. Incorpore harina cernida alternando con la leche y la vainilla. Bata las claras y mézclelas suavemente. Hornee y, si se hacen dos capas, únalas con mermelada."],"tips":[],"source":"Parte 1, págs. 10-11 · R118 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"pasta-economica-primera-formula"},{"id":"r130","title":"Pasta básica esponjosa para pastillaje pesado","category":"Tortas, bizcochos y repostería","ingredients":["200 g de harina","175 g de azúcar","10 huevos","Ralladura de limón"],"preparation":["Bata las yemas agregando aproximadamente dos tercios del azúcar hasta obtener punto de cordón. Bata las claras a punto de nieve con el azúcar restante. Una ambas mezclas suavemente e incorpore la ralladura de limón y la harina cernida varias veces. Hornee alrededor de 350°."],"tips":[],"source":"Parte 1, pág. 11 · R119","slug":"pasta-basica-esponjosa-para-pastillaje-pesado"},{"id":"r131","title":"Pasta blanca para novia o primera comunión","category":"Tortas, bizcochos y repostería","ingredients":["250 g de mantequilla","400 g de azúcar","500 g de harina","14 claras de huevo","1/4 de litro de leche","1 cucharada de polvo Royal","1 cucharada de vainilla","1/4 de cucharadita de sal"],"preparation":["Bata la mantequilla con parte del azúcar. Incorpore la harina cernida con sal y Royal, alternando con la leche. Añada la vainilla. Bata las claras con el resto del azúcar y mézclelas con movimiento envolvente. Hornee alrededor de 350°."],"tips":[],"source":"Parte 1, pág. 12 · R120","slug":"pasta-blanca-para-novia-o-primera-comunion"},{"id":"r132","title":"Bizcocho","category":"Tortas, bizcochos y repostería","ingredients":["3 pocillos de harina de trigo","7 huevos","1 pocillo de azúcar","1/2 libra de mantequilla","1 trago de aguardiente","1 cucharada de polvo Royal","Ralladura de limón verde"],"preparation":["Bata mantequilla y azúcar, incorpore los huevos, la harina cernida con Royal, el aguardiente y la ralladura de limón. Hornee hasta que el bizcocho esté cocido."],"tips":[],"source":"Parte 1, pág. 17 · R121","slug":"bizcocho"},{"id":"r133","title":"Pasta básica de frutas","category":"Tortas, bizcochos y repostería","ingredients":["75 g de mantequilla","125 g de manteca vegetal","275 g de azúcar","350 g de harina","3 huevos","1/4 de litro de leche","1 cucharada de polvo Royal","1 cucharadita de sal","1 naranja","30 g de uvas pasas","30 g de nueces","30 g de cerezas"],"preparation":["Bata mantequilla, manteca y azúcar. Agregue las yemas una a una y luego el jugo y la ralladura de naranja. Incorpore la harina cernida con Royal y sal, alternando con la leche. Bata las claras y mézclelas suavemente. Añada las frutas picadas y hornee."],"tips":[],"source":"Parte 1, págs. 19-20 · R122","slug":"pasta-basica-de-frutas"},{"id":"r134","title":"Pasta ligera","category":"Tortas, bizcochos y repostería","ingredients":["250 g de harina","200 g de azúcar","100 g de mantequilla","10 huevos","1/2 cucharadita de levadura o polvo de hornear"],"preparation":["Bata las yemas con parte del azúcar hasta que estén muy cremosas. Agregue ralladura de limón y la harina cernida con levadura. Bata las claras con el azúcar restante e incorpórelas suavemente. Añada la mantequilla derretida con cuidado y hornee."],"tips":[],"source":"Parte 1, pág. 21 · R123","slug":"pasta-ligera"},{"id":"r135","title":"Pasta económica - segunda fórmula","category":"Tortas, bizcochos y repostería","ingredients":["125 g de mantequilla","300 g de azúcar","250 g de harina","100 g de maicena","5 huevos","1/4 de litro de leche","1 cucharada de polvo de hornear","1 cucharada de vainilla"],"preparation":["Bata la mantequilla con el azúcar. Agregue las yemas y luego la harina y la maicena cernidas con el polvo de hornear, alternando con la leche. Añada vainilla y por último las claras batidas. Hornee alrededor de 350°."],"tips":[],"source":"Parte 1, pág. 22 · R124","slug":"pasta-economica-segunda-formula"},{"id":"r136","title":"Merengón de guanábana","category":"Tortas, bizcochos y repostería","ingredients":["4 claras de huevo","1/4 cucharadita de sal","1/2 cucharadita de jugo de limón","3/4 de taza de azúcar","1 cucharada de mantequilla para los moldes","1 taza de crema de leche","3 cucharadas de azúcar en polvo","2 tazas de pulpa de guanábana"],"preparation":["Bata las claras a temperatura ambiente con sal hasta que empiecen a formar picos. Añada limón y el azúcar poco a poco hasta obtener un merengue firme y brillante. Reparta en dos moldes engrasados de unos 22 cm y hornee a temperatura baja, cerca de 275°, aproximadamente una hora. Deje enfriar. Bata la crema con el azúcar en polvo. Arme una capa de merengue con crema y guanábana, cubra con la segunda capa y refrigere."],"tips":[],"source":"Parte 1, págs. 34-35 · R125","slug":"merengon-de-guanabana"},{"id":"r137","title":"Torta brasileña","category":"Tortas, bizcochos y repostería","ingredients":["Huevos","Azúcar","Mantequilla","Galletas o bizcocho","1 lata de leche condensada","Jugo de limón","Gelatina sin sabor","Vainilla"],"preparation":["Cocine a fuego suave la mezcla de mantequilla, huevos y azúcar sin dejar hervir. Incorpore leche condensada, limón y vainilla. Forre un molde con galleta o miga, vierta la crema y cubra. Refrigere varias horas y decore al gusto."],"tips":["La página está parcialmente cubierta por otro papel; se conserva la preparación legible y se omiten cifras que no pueden confirmarse."],"source":"Parte 1, pág. 36 · R126","slug":"torta-brasilena"},{"id":"r138","title":"Torta de limón - versión ligera","category":"Tortas, bizcochos y repostería","ingredients":["100 g de mantequilla","5 claras de huevo a punto de nieve","1 limón","50 g de azúcar pulverizada","3 cucharadas rasas de harina de trigo"],"preparation":["Añada el jugo de limón poco a poco a las claras batidas. Incorpore el azúcar por cucharadas y luego la harina cernida con movimiento envolvente. Agregue la ralladura de limón. Vierta en molde engrasado y hornee aproximadamente 25 minutos. Deje enfriar y decore con azúcar pulverizada y tajadas de limón."],"tips":[],"source":"Parte 1, pág. 42 · R127","slug":"torta-de-limon-version-ligera"},{"id":"r139","title":"Pionono o brazo de reina","category":"Tortas, bizcochos y repostería","ingredients":["6 huevos","3/4 de taza de azúcar","1 1/2 tazas de harina de trigo","2 cucharaditas de polvo de hornear"],"preparation":["Bata los huevos enteros, agregue azúcar hasta obtener punto de cinta e incorpore la harina con el polvo de hornear. Extienda en una lata cuadrada engrasada y forrada con papel parafinado. Hornee rápidamente. Al sacar, voltee sobre un paño espolvoreado con azúcar, enrolle en caliente y deje enfriar antes de rellenar."],"tips":[],"source":"Parte 1, pág. 44 · R128","slug":"pionono-o-brazo-de-reina"},{"id":"r140","title":"Torta combinada","category":"Tortas, bizcochos y repostería","ingredients":["1 bizcochuelo de vainilla de 4 huevos","1 bizcochuelo de chocolate de 4 huevos","Albaricoque o mermelada","3 bananos","3 manzanas","Azúcar al gusto","Canela","Vino blanco, opcional"],"preparation":["Hornee los dos bizcochuelos en moldes del mismo tamaño. Corte círculos o piezas y alterne los colores. Prepare una compota o mermelada con las frutas, azúcar, canela y, si se desea, vino blanco. Use esta mezcla para unir las capas y cubra con manjar blanco."],"tips":[],"source":"Parte 1, pág. 45 · R129","slug":"torta-combinada"},{"id":"r141","title":"Torta de zanahoria","category":"Tortas, bizcochos y repostería","ingredients":["2 barras de mantequilla","3 huevos","2 cucharadas de ralladura de naranja","1/4 de taza de jugo de naranja","2/3 de taza de miel de maple o jarabe","1/2 cucharadita de canela","1/2 cucharadita de clavo","1/2 cucharadita de nuez moscada","1/2 cucharadita de sal","2 tazas de zanahoria rallada","1 1/2 tazas de harina","1 1/2 cucharaditas de polvo Royal"],"preparation":["Bata mantequilla e incorpore los huevos uno por uno. Agregue ralladura, especias, jarabe, jugo y zanahoria. Añada harina cernida con Royal. Vierta en un molde enmantequillado y espolvoreado con miga y hornee a unos 180° durante aproximadamente 30 minutos."],"tips":[],"source":"Parte 1, pág. 46 · R130","slug":"torta-de-zanahoria"},{"id":"r142","title":"Torta de germen de trigo","category":"Tortas, bizcochos y repostería","ingredients":["5 huevos","Azúcar morena y azúcar blanca","Aceite","Ralladura de naranja","Jugo de naranja y limón","Germen de trigo","Harina de trigo","Polvo de hornear","Cacao","Nueces picadas"],"preparation":["Bata las claras. Aparte bata yemas con los azúcares, agregue aceite, jugos y ralladura. Incorpore las claras, el germen de trigo, harina, polvo de hornear, cacao y nueces. Hornee y, al final, espolvoree azúcar pulverizada."],"tips":["Algunas cantidades pequeñas del manuscrito son difíciles de leer; se conserva la fórmula sin inventarlas."],"source":"Parte 1, pág. 47 · R131","slug":"torta-de-germen-de-trigo"},{"id":"r143","title":"Torta económica con frutas cristalizadas","category":"Tortas, bizcochos y repostería","ingredients":["Leche o agua tibia","Levadura fresca","Miel","150 g de azúcar","1 huevo grande o 2 pequeños","100 g de mantequilla","Ralladura de limón o naranja","1 cucharada de cacao","600 g de harina","250 g de fruta cristalizada","200 g de uvas pasas"],"preparation":["Active la levadura con líquido tibio y miel. Mezcle con azúcar, huevo, mantequilla, ralladura, cacao y harina. Incorpore la fruta cristalizada y las pasas. Deje crecer y hornee hasta que esté cocida."],"tips":[],"source":"Parte 1, pág. 48 · R132","slug":"torta-economica-con-frutas-cristalizadas"},{"id":"r144","title":"Torta de yogur - Lucero","category":"Tortas, bizcochos y repostería","ingredients":["1 vaso de yogur natural de 125 g","2 vasos de harina de trigo","1 1/2 vasos de azúcar","1 vaso de aceite de cocina","1 cucharadita rasa de polvo de hornear","4 huevos","Ralladura de limón","Jugo de 2 limones","Frutas o chocolate, opcionales"],"preparation":["Mezcle yogur, aceite y azúcar con batidor. Agregue ralladura y jugo de limón. Incorpore la harina poco a poco con el polvo de hornear. Bata las claras a la nieve y mézclelas al final con movimiento envolvente. Vierta en molde engrasado y hornee alrededor de 200° por unos 45 minutos, probando con cuchillo."],"tips":[],"source":"Parte 1, pág. 67 · R133","slug":"torta-de-yogur-lucero"},{"id":"r145","title":"Genovesa - primera versión","category":"Tortas, bizcochos y repostería","ingredients":["250 g de harina de trigo","8 huevos","250 g de azúcar","38 g de aceite","1 cucharadita de vainilla","1 pizca de sal","Leche, leche condensada y crema de leche para bañar"],"preparation":["Prepare el bizcochuelo batiendo huevos y azúcar e incorporando harina, aceite, vainilla y sal. Para el baño, licúe leche, leche condensada y crema de leche y viértalo sobre el bizcocho. Puede cubrirse con crema chantilly y chocolate rallado."],"tips":[],"source":"Parte 1, pág. 69 · R134 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"genovesa-primera-version"},{"id":"r146","title":"Torta de yogur - Esperanza","category":"Tortas, bizcochos y repostería","ingredients":["1 vaso de yogur","1 vaso de aceite de cocina, preferiblemente girasol","1 1/2 vasos de azúcar","4 vasos de harina de trigo","1 cucharada rasa de polvo Royal","4 huevos, con las claras a punto de nieve","Ralladura de 1 limón","Jugo de 2 limones"],"preparation":["Mezcle los ingredientes líquidos y secos hasta obtener una masa uniforme. Incorpore las claras batidas a punto de nieve al final y hornee a la temperatura anotada en el cuaderno, aproximadamente 250°."],"tips":[],"source":"Parte 2, pág. 58 · R135","slug":"torta-de-yogur-esperanza"},{"id":"r147","title":"Postre de maracuyá tipo torta fría","category":"Tortas, bizcochos y repostería","ingredients":[],"preparation":["Véase “Postre de maracuyá” en la categoría de postres fríos. En el cuaderno aparece junto a otras fórmulas de tortas, pero la preparación es refrigerada."],"tips":[],"source":"Parte 1, pág. 68 · R136","slug":"postre-de-maracuya-tipo-torta-fria"},{"id":"r148","title":"Torta de cuajada","category":"Tortas, bizcochos y repostería","ingredients":["1/4 de libra de margarina","1 taza de azúcar","3 huevos","1 taza de miga de bizcocho","1 cucharada de esencia de vainilla","1/2 cucharadita de canela en polvo","1 1/2 libras de cuajada molida","Bocadillo, opcional, para el centro"],"preparation":["Bata muy bien la margarina con el azúcar hasta que esté cremosa. Agregue los huevos, la cuajada, la miga de bizcocho y los demás ingredientes. Coloque en molde y, si desea, ponga bocadillo en el centro. Hornee a unos 350° durante aproximadamente 40 minutos."],"tips":[],"source":"Parte 1, págs. 80-81 · R137","slug":"torta-de-cuajada"},{"id":"r149","title":"Torta de limón - postre rico","category":"Tortas, bizcochos y repostería","ingredients":["6 claras de huevo","1 tarro de leche condensada","1 tarro de crema de leche","1 cucharadita de vainilla","Jugo de 2 limones","200 g de azúcar","1 sobre de gelatina sin sabor"],"preparation":["Bata las claras a punto de nieve. Agregue los demás ingredientes poco a poco y añada la gelatina previamente disuelta en agua caliente. Mezcle, vierta en molde y lleve a la nevera hasta que cuaje."],"tips":[],"source":"Parte 1, págs. 87-88 · R138","slug":"torta-de-limon-postre-rico"},{"id":"r150","title":"Genovesa - Esperanza","category":"Tortas, bizcochos y repostería","ingredients":["12 huevos","1/2 libra de azúcar","1/2 libra de harina de trigo","1 cucharadita de vainilla","1 pizca de sal","1 trago de vino","1 pocillo pequeño de aceite","1 lata grande de leche condensada","1 lata grande de crema de leche","Leche de vaca","Azúcar para el baño"],"preparation":["Bata las claras a la nieve y agregue azúcar, yemas y harina poco a poco con movimientos envolventes. Añada vino y vainilla. Vierta en molde engrasado y enharinado y hornee hasta que el cuchillo salga limpio. Para el baño, licúe leche condensada, crema de leche y leche de vaca. Ponga parte del batido en el molde, coloque el bizcochuelo, chúcelo con un tenedor y vierta el resto por encima para que quede bien empapado. Cubra con salsa de ciruelas, masmelo o crema chantilly y chocolate rallado."],"tips":[],"source":"Parte 2, págs. 45-47 · R139","slug":"genovesa-esperanza"},{"id":"r151","title":"Torta de cuajada y moras","category":"Tortas, bizcochos y repostería","ingredients":["2 libras de cuajada fresca","1 libra de moras","1 libra de azúcar","2 tarros de leche condensada","10 huevos"],"preparation":["Licúe la cuajada, huevos y leche condensada. Hornee en refractaria engrasada alrededor de 250° por una hora, hasta que el cuchillo salga limpio. Cocine las moras con azúcar y sirva esta salsa sobre la torta."],"tips":[],"source":"Parte 2, pág. 48 · R140","slug":"torta-de-cuajada-y-moras"},{"id":"r152","title":"Pay de melón o de otra fruta","category":"Tortas, bizcochos y repostería","ingredients":["1 1/2 tazas de harina de trigo","100 g de azúcar pulverizada","1/4 de libra de mantequilla helada","3 o 4 cucharadas de agua helada","Colapiscis o gelatina sin sabor","Fruta y su almíbar"],"preparation":["Mezcle harina, azúcar y mantequilla con la punta de los dedos, sin amasar demasiado. Añada agua fría hasta formar una bola y deje reposar. Extienda y forre un molde; rellene con la fruta escurrida. Hornee alrededor de 300° por unos 20 minutos. Hidrate la gelatina con el almíbar y úsela para cubrir el pay ya horneado."],"tips":[],"source":"Parte 2, pág. 34 · R141","slug":"pay-de-melon-o-de-otra-fruta"},{"id":"r153","title":"Pastel de manzana","category":"Tortas, bizcochos y repostería","ingredients":["1 kilo de manzanas","300 g de harina","200 g de mantequilla","2 cucharadas de azúcar","1 huevo","2 cucharadas de vinagre blanco","1 pizca de sal","Agua, la necesaria","Uvas pasas, nueces, azúcar y canela para el relleno"],"preparation":["Frote harina y mantequilla, agregue azúcar, huevo, vinagre, sal y un poco de agua; forme una masa sin trabajar de más. Deje reposar, extienda y forre el molde. Rellene con manzana picada, pasas, nueces, azúcar y canela. Cubra con otra capa de masa, pinte con huevo y hornee de 35 a 40 minutos a temperatura moderada."],"tips":[],"source":"Parte 2, pág. 25 · R142","slug":"pastel-de-manzana"},{"id":"r154","title":"Torta de manzana y queso","category":"Tortas, bizcochos y repostería","ingredients":["200 g de harina","100 g de mantequilla","2 cucharadas de aceite","2 cucharadas de azúcar","1 yema de huevo","1 cucharadita de jugo de limón","3/4 de kilo de manzanas","3 cucharadas de azúcar","3 cucharadas de vino blanco","500 g de queso crema o ricotta","3/4 de taza de azúcar","4 huevos","1 cucharada de maicena","1 cucharadita de limón","1/4 de taza de uvas pasas","2 cucharadas de nueces picadas"],"preparation":["Mezcle la masa sin amasar demasiado, refrigere media hora, extienda y forre el molde. Pique con tenedor y prehornee 8 a 10 minutos. Cocine ligeramente las manzanas con azúcar y vino. Mezcle el queso con yemas, azúcar, maicena, limón, pasas y nueces; incorpore claras batidas. Vierta sobre la base y hornee cerca de 350° durante unos 50 minutos."],"tips":[],"source":"Parte 2, págs. 26-27 · R143 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"torta-de-manzana-y-queso"},{"id":"r155","title":"Torta de espinaca y acelga","category":"Tortas, bizcochos y repostería","ingredients":["400 g de espinaca","400 g de acelga","1 lata de crema de leche","100 g de queso gruyere","Sal, nuez moscada, pimienta y tomillo","1 cucharada de mantequilla","2 huevos","3 cucharadas de uvas pasas"],"preparation":["Pique las verduras y cocínelas en microondas unos 4 minutos. Mezcle con crema de leche, queso, condimentos, mantequilla, huevos y pasas. Vierta en molde y cocine hasta que cuaje."],"tips":[],"source":"Parte 2, pág. 30 · R144 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"torta-de-espinaca-y-acelga"},{"id":"r156","title":"Torta de yogur - fórmula de 250 grados","category":"Tortas, bizcochos y repostería","ingredients":[],"preparation":["Esta fórmula corresponde a la “Torta de yogur - Esperanza” transcrita en esta misma categoría."],"tips":[],"source":"Parte 2, pág. 58 · R145","slug":"torta-de-yogur-formula-de-250-grados"},{"id":"r157","title":"Torta de limón o naranja - medida de yogur","category":"Tortas, bizcochos y repostería","ingredients":["1 vaso de yogur natural","1/2 cucharadita de polvo de hornear","5 huevos, separadas claras y yemas","1 medida del vaso de yogur de aceite","1 1/2 medidas de azúcar","3 medidas de harina","Jugo de 2 limones o de naranja","Ralladura de 1 limón o naranja"],"preparation":["Bata las claras a punto de nieve. Mezcle por separado las yemas, el aceite, el azúcar, el yogur y el jugo con la ralladura. Incorpore la harina con el polvo de hornear y, al final, las claras con movimiento envolvente. Hornee alrededor de 200 °C durante unos 45 minutos o hasta que pase la prueba del cuchillo."],"tips":[],"source":"Parte 1, pág. 60 · R190","slug":"torta-de-limon-o-naranja-medida-de-yogur"},{"id":"r158","title":"Pie de pera, piña u otra fruta","category":"Tortas, bizcochos y repostería","ingredients":["250 g de harina de trigo","125 g de mantequilla","1 pizca de sal","3 cucharadas de agua helada","1 tarro de leche condensada","4 yemas de huevo","Pera, piña, durazno u otra fruta"],"preparation":["Amase la harina con la mantequilla, la sal y el agua helada hasta formar una bola. Enharine, envuelva y deje reposar en la nevera. Estire delgada y cubra un molde engrasado. Hornee la base. Aparte bata la leche condensada con las yemas, incorpore la fruta elegida y vierta sobre la base; termine la cocción al horno."],"tips":["En la página aparecen dos temperaturas alternativas de horno; la lectura exacta de una de ellas no es completamente segura."],"source":"Parte 1, págs. 76-77 · R192","slug":"pie-de-pera-pina-u-otra-fruta"},{"id":"r159","title":"Delicioso pay de frutas - Tadita","category":"Tortas, bizcochos y repostería","ingredients":["1 caja pequeña de maicena","1 litro de leche","1 tarro grande de leche condensada","1 tarro de crema de leche","1 cucharada de esencia de vainilla","2 yemas de huevo","300 g de harina de trigo para la masa","125 g de mantequilla","2 yemas de huevo para la masa","Ralladura de 1 naranja","Ralladura de 1 limón","Canela en polvo al gusto","Frutas al gusto","Mermelada para barnizar"],"preparation":["Para la crema, disuelva la maicena en una parte de la leche fría.","Ponga al fuego el resto de la leche con la leche condensada y la crema de leche. Agregue la maicena disuelta y revuelva constantemente.","Añada las 2 yemas y la vainilla, y continúe cocinando a fuego bajo hasta que hierva y espese. Cocine 5 minutos más y deje enfriar.","Para la masa, mezcle los 300 g de harina con la mantequilla, 2 yemas, las ralladuras y un poco de canela. Amase lo justo para integrar.","Estire con rodillo, forre el molde y hornee a fuego medio unos 20 minutos. Deje enfriar.","Rellene con la crema fría, distribuya las frutas y barnice con mermelada."],"tips":["La crema debe quedar espesa antes de enfriarse para que el pay conserve bien la forma al cortarlo."],"source":"Parte 2, pág. 44 · R201 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"delicioso-pay-de-frutas-tadita"},{"id":"r160","title":"Galletas “Esperancita rica”","category":"Galletas, bocados y dulces","ingredients":["1 libra de harina de trigo","1/2 libra de mantequilla","1/2 libra de azúcar","3 huevos","1 cucharadita de polvo Royal","1 cucharadita de esencia de vainilla","Opcional: 1/2 libra de avena y un puñado de coco"],"preparation":["Bata primero la mantequilla con el azúcar. Agregue los demás ingredientes, forme las galletas y hornee alrededor de 225° hasta que doren."],"tips":[],"source":"Parte 2, pág. 6 · R146","slug":"galletas-esperancita-rica"},{"id":"r161","title":"Galletas","category":"Galletas, bocados y dulces","ingredients":["5 tazas de harina de trigo, equivalentes a unas 2 1/2 libras","1/2 libra de margarina","2 huevos","1 taza más 2 cucharadas de azúcar","1 cucharadita de esencia de vainilla","1 cucharadita de especias: canela, clavo o nuez moscada","1 cucharadita de polvo de hornear"],"preparation":["Cierna la harina con el polvo de hornear. Creme ligeramente la margarina con el azúcar, agregue los huevos y la vainilla. Incorpore poco a poco la mezcla de harina hasta obtener una masa lisa y uniforme. Extienda, forme las galletas y hornee a 350° durante 15 a 20 minutos."],"tips":[],"source":"Parte 1, pág. 100 · R147","slug":"galletas"},{"id":"r162","title":"Galletas ricas - Esperanza","category":"Galletas, bocados y dulces","ingredients":["1 libra de harina de trigo","1/2 libra de mantequilla","2 huevos","1 cucharadita de vainilla","1 puñado de coco","1 cucharadita de polvo Royal","1/2 libra de azúcar"],"preparation":["Mezcle los ingredientes sin amasar demasiado. Extienda sobre plástico como una arepa, corte las galletas y colóquelas en una lata. Hornee alrededor de 250° por unos 20 minutos, hasta que doren."],"tips":[],"source":"Parte 2, pág. 42 · R148","slug":"galletas-ricas-esperanza"},{"id":"r163","title":"Galletas de avena","category":"Galletas, bocados y dulces","ingredients":["1/2 taza de azúcar morena, 100 g","1/2 taza de azúcar blanca, 100 g","1/2 taza de mantequilla, 100 g","1 huevo grande","1 cucharadita de vainilla","1 cucharada de leche","1 taza de harina de trigo, 150 g","1/2 cucharadita de bicarbonato","1/2 cucharadita de polvo Royal","1/2 cucharadita de sal","1 taza de avena en hojuelas, 100 g","1/2 cucharadita de canela","3/4 de taza de uvas pasas","1 cucharadita de ralladura de limón"],"preparation":["Bata la mantequilla con los azúcares. Agregue huevo, leche y vainilla hasta que esté suave. Aparte mezcle harina, avena, sal, bicarbonato y polvo Royal. Una las dos mezclas, incorpore pasas y ralladura. Forme las galletas y hornee a 175 °C."],"tips":["La anotación indica que esta medida rinde aproximadamente una docena y media de galletas."],"source":"Parte 2, pág. 49 · R149","slug":"galletas-de-avena"},{"id":"r164","title":"Muffins de avena","category":"Galletas, bocados y dulces","ingredients":["180 g de mantequilla","130 g de azúcar","3 huevos","100 g de avena en hojuelas","300 g de harina de trigo","1 cucharadita de polvo de hornear","Canela en polvo","Leche, la necesaria para mezclar"],"preparation":["Bata la mantequilla con el azúcar, agregue huevos y luego avena, harina, polvo de hornear y canela. Añada leche hasta obtener una masa adecuada. Distribuya en moldes y hornee alrededor de 180° por unos 25 minutos."],"tips":[],"source":"Parte 2, pág. 60 · R150","slug":"muffins-de-avena"},{"id":"r165","title":"Pandero - Matilde","category":"Galletas, bocados y dulces","ingredients":["1 libra de almidón de yuca","1/2 libra de mantequilla","1/2 libra de azúcar","1 huevo","1 trago de aguardiente"],"preparation":["Creme la mantequilla con el azúcar. Agregue huevo, aguardiente y almidón. Amase bien y deje reposar media hora. Forme los panderos, marque con tenedor, unte con clara de huevo y hornee alrededor de 350° por 25 minutos."],"tips":[],"source":"Parte 1, págs. 82-83 · R151","slug":"pandero-matilde"},{"id":"r166","title":"Pandero - otra fórmula","category":"Galletas, bocados y dulces","ingredients":["1 libra de fécula de maíz o maicena","1/4 de libra de mantequilla","1/2 libra de azúcar","2 huevos","1 trago de aguardiente"],"preparation":["Creme mantequilla y azúcar. Añada huevos, aguardiente y fécula. Amase, deje reposar media hora, forme los panderos y marque con tenedor. Puede pintarlos con clara. Hornee alrededor de 300-350°."],"tips":[],"source":"Parte 1, págs. 82-83 y 91 · R152","slug":"pandero-otra-formula"},{"id":"r167","title":"Cocadas - Esperancita","category":"Galletas, bocados y dulces","ingredients":["5 litros de leche","2 1/2 libras de azúcar","1 cucharadita de bicarbonato","1 cucharada de harina de trigo","1 cucharada de leche Klim","2 cocos"],"preparation":["La página conserva la fórmula de ingredientes, pero no registra el procedimiento completo."],"tips":["No se añadió un método de cocción porque no aparece escrito en el escaneo."],"source":"Parte 2, pág. 75 · R153","slug":"cocadas-esperancita"},{"id":"r168","title":"Bolitas de pollo con jamón","category":"Galletas, bocados y dulces","ingredients":["2 pechugas de pollo aliñadas","6 tajadas de jamón finamente picado","2 cucharadas de crema de leche","1/2 taza de queso parmesano rallado","1/4 de litro de crema de leche adicional","1 pizca de pimienta","1/2 cucharadita de sal"],"preparation":["Cocine las pechugas y muélalas. Agregue jamón, crema, parmesano, sal y pimienta. Amase, forme bolitas y páselas brevemente por leche o una mezcla ligera antes de freírlas hasta que doren."],"tips":["La nota indica un rendimiento de aproximadamente 30 bolitas."],"source":"Parte 2, pág. 69 · R154 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"bolitas-de-pollo-con-jamon"},{"id":"r169","title":"Kekis rellenos de dulce","category":"Galletas, bocados y dulces","ingredients":["300 g de harina de trigo","Ralladura de naranja","1 huevo","Vainilla","100 g de azúcar","200 g de mantequilla","1 cucharadita de polvo Royal","Dulce de batata para rellenar"],"preparation":["Mezcle sin trabajar demasiado la masa, hasta que quede compacta. Forre pequeños moldes, coloque dulce de batata en el centro, cubra con un poco más de masa y hornee."],"tips":[],"source":"Parte 2, pág. 59 · R155","slug":"kekis-rellenos-de-dulce"},{"id":"r170","title":"Deliciosas croquetas","category":"Galletas, bocados y dulces","ingredients":["Aceite y mantequilla, en partes iguales","1 cebolla cabezona picada","50 g de harina de trigo","Leche caliente, aproximadamente 2 pocillos o lo necesario","Pechuga cocinada y picada","Nuez moscada","Huevo batido","Miga de pan","Aceite para freír"],"preparation":["Caliente aceite y mantequilla, sofría la cebolla y agregue la harina. Revuelva hasta que esté bien cocida. Incorpore leche caliente poco a poco hasta formar una bechamel espesa. Añada la pechuga picada y un toque de nuez moscada. Deje reposar la mezcla en la nevera, idealmente desde el día anterior. Forme croquetas, páselas por huevo batido y miga de pan y fríalas en aceite caliente, cerca de 180°."],"tips":[],"source":"Parte 2, pág. 62 · R156","slug":"deliciosas-croquetas"},{"id":"r171","title":"Pasabocas enrollados de pan","category":"Galletas, bocados y dulces","ingredients":["Pan tajado o pan de molde, sin corteza","Salchichón","Habichuelas cocidas","Zanahoria cocida","Leche","Sal y pimienta"],"preparation":["Retire la corteza del pan y aplánelo. Humedezca ligeramente con leche sazonada con sal y pimienta. Distribuya el relleno de salchichón, habichuelas y zanahoria, enrolle apretando bien y envuelva en papel aluminio. Lleve al frío antes de cortar."],"tips":["La composición exacta del relleno está abreviada en el manuscrito, pero estos ingredientes son legibles."],"source":"Parte 1, pág. 33 · R187","slug":"pasabocas-enrollados-de-pan"},{"id":"r172","title":"Galletas crujientes","category":"Galletas, bocados y dulces","ingredients":["3 tazas de harina de trigo","1 huevo","1 taza de azúcar","1 taza de mantequilla","Ralladura de naranja"],"preparation":["El cuaderno registra los ingredientes y una indicación de horno a 300°, pero no conserva un procedimiento completo."],"tips":["Procedimiento incompleto en la página original; no se añadió un método no escrito."],"source":"Parte 1, pág. 49 · R189","slug":"galletas-crujientes"},{"id":"r173","title":"Crema para cubrir pasteles","category":"Decoración, cubiertas y pastillaje","ingredients":["200 g de mantequilla","400 g de azúcar pulverizada","1 cucharada de vainilla","50 g de cocoa cernida, opcional, para versión de chocolate"],"preparation":["Bata la mantequilla hasta que esté cremosa. Agregue el azúcar pulverizada cernida y la vainilla. Tiña del color deseado. Para chocolate, incorpore cocoa cernida."],"tips":[],"source":"Parte 1, pág. 15 · R157","slug":"crema-para-cubrir-pasteles"},{"id":"r174","title":"Crema para cubrir ponqué","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar corriente","6 claras de huevo","2 sobres de gelatina sin sabor"],"preparation":["Cocine el azúcar con un pocillo de agua hasta obtener un almíbar a punto de hilo o bola suave. Bata las claras a la nieve y agregue el almíbar caliente en hilo. Incorpore la gelatina disuelta y continúe batiendo hasta que la cubierta esté firme. Use para cubrir el ponqué."],"tips":[],"source":"Parte 1, pág. 15 · R158","slug":"crema-para-cubrir-ponque"},{"id":"r175","title":"Cubierta de masmelo para ponqué","category":"Decoración, cubiertas y pastillaje","ingredients":["5 claras de huevo","1 libra de azúcar","Jugo de 2 limones","5 hojas de colapiscis","5 cucharadas de azúcar pulverizada"],"preparation":["Prepare un almíbar con el azúcar. Bata las claras a punto de nieve y agregue el almíbar en hilo. Añada jugo de limón, el colapiscis previamente disuelto y por último azúcar pulverizada hasta obtener una cubierta firme."],"tips":["La abuelita anotó que esta cubierta conviene prepararla cerca del momento de usarla."],"source":"Parte 1, pág. 16 · R159","slug":"cubierta-de-masmelo-para-ponque"},{"id":"r176","title":"Pasta goma para figuras","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar pulverizada","3 hojas de colapiscis","Agua caliente"],"preparation":["Disuelva el colapiscis en agua caliente. Mezcle con el azúcar pulverizada y amase hasta obtener punto de pastillaje. Use para hacer figuras, flores y adornos."],"tips":[],"source":"Parte 1, pág. 17 · R160","slug":"pasta-goma-para-figuras"},{"id":"r177","title":"Tabla de colores para decoración","category":"Decoración, cubiertas y pastillaje","ingredients":[],"preparation":["El cuaderno conserva una tabla de mezclas de los colores básicos amarillo, rojo y azul para obtener verde, café, violeta, verde claro, oro, azul marino, verde hoja, naranja, turquesa, verde azulado, rojo rubí, color carne, color madera, negro y gris. Se utilizaba como guía para teñir cubiertas y decoración de pasteles."],"tips":[],"source":"Parte 1, pág. 18 · R161","slug":"tabla-de-colores-para-decoracion"},{"id":"r178","title":"Cubierta para ponqué - fórmula de almíbar","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar refinada","5 claras de huevo","1 sobre de gelatina sin sabor","Jugo de 1 limón","Azúcar pulverizada, la necesaria para ajustar la consistencia"],"preparation":["Ponga el azúcar con 1 pocillo de agua y cocine hasta obtener un almíbar en punto de hilo fuerte.","Bata las 5 claras a punto de nieve.","Vierta el almíbar caliente en hilo fino sobre las claras, sin dejar de batir.","Disuelva la gelatina en un poco de agua caliente e incorpórela junto con el jugo de limón.","Continúe batiendo hasta que la cubierta esté espesa, brillante y tibia. Use de inmediato sobre el ponqué."],"tips":[],"source":"Parte 1, pág. 23 · R162 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"cubierta-para-ponque-formula-de-almibar"},{"id":"r179","title":"Pasta laminada / rolled fondant","category":"Decoración, cubiertas y pastillaje","ingredients":["1/4 de taza de agua caliente","3 hojas de colapiscis o 1 sobre de gelatina sin sabor","1 1/2 cucharadas de glicerina","1/2 taza de glucosa","1 cucharada de extracto de almendra o vainilla blanca","2 1/4 libras de azúcar pulverizada cernida"],"preparation":["Disuelva la gelatina en el agua caliente. Añada glicerina, glucosa y esencia. Vierta poco a poco sobre el azúcar pulverizada y amase hasta obtener una masa lisa, flexible y que no se pegue. Extienda con rodillo sobre superficie espolvoreada con azúcar y cubra el ponqué."],"tips":[],"source":"Parte 1, pág. 28 · R163","slug":"pasta-laminada-rolled-fondant"},{"id":"r180","title":"Cubierta de masmelow - recorte","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar pulverizada","2 sobres de gelatina sin sabor","1 cucharadita mermada de glucosa","1 pizca de sal","1 pocillo chocolatero mermado de agua"],"preparation":["Disuelva la gelatina en el agua y añada glucosa y sal. Caliente a fuego bajo sin hervir. Agregue el azúcar cernida y bata primero rápido y luego más lento para evitar exceso de aire. Si queda muy espesa, añada un poco de agua caliente. Use en dos capas si es necesario."],"tips":["Puede teñirse con anilina. El ponqué no debe estar excesivamente húmedo."],"source":"Parte 1, pág. 28 · R164","slug":"cubierta-de-masmelow-recorte"},{"id":"r181","title":"Cubierta satinada - fórmula Esperanza","category":"Decoración, cubiertas y pastillaje","ingredients":["Azúcar pulverizada","Gelatina sin sabor","Glucosa","Glicerina","Grasa vegetal","Agua","Esencia de vainilla, opcional","Sal","Color vegetal"],"preparation":["Disuelva la gelatina y la glucosa; incorpore la grasa y la glicerina. Añada poco a poco el azúcar pulverizada hasta formar una pasta que pueda amasarse y extenderse. Coloree al gusto y cubra el ponqué."],"tips":["El papel superpuesto en la pág. 29 y varias cifras de la pág. 30 impiden confirmar todas las cantidades."],"source":"Parte 1, págs. 29-30 · R165","slug":"cubierta-satinada-formula-esperanza"},{"id":"r182","title":"Cubierta de pastillaje para ponqué - Luz Dary","category":"Decoración, cubiertas y pastillaje","ingredients":["1 1/2 libras de azúcar pulverizada","1 sobre de gelatina sin sabor","2 cucharadas de glicerina","1 cucharada de miel de abejas","1 cucharada de vainilla blanca"],"preparation":["Disuelva la gelatina, mezcle con glicerina, miel y vainilla. Incorpore al azúcar pulverizada y amase hasta obtener una pasta lisa. Extienda sobre plástico ligeramente engrasado y úsela para cubrir el ponqué."],"tips":[],"source":"Parte 1, pág. 33 y Parte 2, pág. 48 · R166","slug":"cubierta-de-pastillaje-para-ponque-luz-dary"},{"id":"r183","title":"Cubierta de masmelo para ponqué - segunda fórmula","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar refinada","1 pocillo de agua","4 claras de huevo","1 sobre de gelatina sin sabor","Jugo de 1 limón","Azúcar pulverizada"],"preparation":["Cocine el azúcar con agua hasta punto de bola. Bata las claras a punto de nieve y agregue el almíbar caliente en hilo. Incorpore jugo de limón y gelatina disuelta. Cubra el ponqué antes de que la mezcla se enfríe demasiado."],"tips":[],"source":"Parte 1, pág. 59 · R167","slug":"cubierta-de-masmelo-para-ponque-segunda-formula"},{"id":"r184","title":"Cubierta de ciruelas para genovesa","category":"Decoración, cubiertas y pastillaje","ingredients":["1 pocillo de vino","1/2 libra de ciruelas","1/2 libra de azúcar","1/2 paquete de gelatina sin sabor"],"preparation":["Cocine las ciruelas con el vino y el azúcar. Disuelva la gelatina en agua caliente e incorpórela. Hierva unos minutos y use la salsa para cubrir el bizcochuelo."],"tips":[],"source":"Parte 2, pág. 46 · R168","slug":"cubierta-de-ciruelas-para-genovesa"},{"id":"r185","title":"Pastillaje preparado - Esperanza","category":"Decoración, cubiertas y pastillaje","ingredients":["2 libras de azúcar pulverizada","1 caja de gelatina sin sabor","150 cm³ de agua, equivalentes a unas 5 onzas","10 cm³ de jugo de limón","100 g de maicena"],"preparation":["Disuelva la gelatina en el agua al baño María, sin dejarla hervir. Mezcle con los demás ingredientes y amase hasta obtener una pasta bien compacta. Envuelva en bolsa plástica y conserve en la nevera. Sirve para flores y adornos."],"tips":[],"source":"Parte 2, págs. 40, 44 y 57 · R169","slug":"pastillaje-preparado-esperanza"},{"id":"r186","title":"Cubierta satinada Esperancita","category":"Decoración, cubiertas y pastillaje","ingredients":["5 cucharadas de agua","3 cucharadas de glicerina","2 cucharadas de miel de abejas","1/2 cucharadita de crema de tártaro","1/2 sobre de gelatina sin sabor","2 cucharadas de glucosa","1/2 hoja de colapiscis","Azúcar pulverizada, aproximadamente 2 libras"],"preparation":["Disuelva los ingredientes líquidos y gelificantes al baño María. Añada azúcar pulverizada poco a poco hasta obtener una masa que pueda extenderse con rodillo."],"tips":["Agregue el azúcar pulverizada gradualmente: la cantidad final depende de la humedad de la mezcla."],"source":"Parte 2, pág. 40 · R170 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"cubierta-satinada-esperancita"},{"id":"r187","title":"Fórmula del porcelanicrón","category":"Decoración, cubiertas y pastillaje","ingredients":["1 pocillo de agua fría","1 pocillo de maicena","1 pocillo de yucarina","2 onzas de glicerina","2 onzas de formol","2 pocillos de Colbón o pegante para madera"],"preparation":["Agregue los ingredientes en orden, mezclando muy bien cada uno antes de añadir el siguiente. Cocine en sartén de teflón, moviendo con cuchara de madera, hasta que la masa se desprenda. Saque y amase con maicena hasta dar el punto. No la deje demasiado dura. Guarde en bolsa plástica dentro de un tarro bien tapado."],"tips":["Este apunte no es comestible; se conserva porque forma parte de las técnicas de modelado y decoración del cuaderno."],"source":"Parte 2, pág. 41 · R171","slug":"formula-del-porcelanicron"},{"id":"r188","title":"Cubierta de Hyvol para ponqué","category":"Decoración, cubiertas y pastillaje","ingredients":["500 g de azúcar refinada","150 ml de agua","2.5 ml de jugo de limón","60 g de Hyvol","200 ml de agua para batir el Hyvol"],"preparation":["Cocine el azúcar refinada con los 150 ml de agua y el jugo de limón hasta obtener punto de hilo fuerte o punto de burbuja.","Aparte, bata el Hyvol con 200 ml de agua a velocidad alta hasta que forme picos firmes.","Baje la velocidad de la batidora y agregue el almíbar caliente en hilo fino.","Continúe batiendo hasta lograr una cubierta blanca, firme y lisa."],"tips":["No bata de más el Hyvol antes de añadir el almíbar; debe quedar firme pero todavía flexible."],"source":"Parte 2, págs. 52-53 · R172 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"cubierta-de-hyvol-para-ponque"},{"id":"r189","title":"Cubierta merengada - Esperanza","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar refinada","1 cucharadita de crema de tártaro","1 limón verde","3 claras de huevo"],"preparation":["Ponga a hervir el azúcar con un pocillo de agua y el limón cortado, hasta punto de bola. Bata las claras a la nieve con crema de tártaro y agregue el almíbar caliente poco a poco, batiendo hasta que la cubierta quede firme. Aplique caliente sobre el ponqué."],"tips":[],"source":"Parte 2, pág. 53 · R173","slug":"cubierta-merengada-esperanza"},{"id":"r190","title":"Cubierta fondant","category":"Decoración, cubiertas y pastillaje","ingredients":["60 g, unas 4 cucharadas, de grasa vegetal blanca","30 ml, 2 cucharadas, de jugo de limón","30 ml, 2 cucharadas, de agua","750 g, unas 1 1/2 libras, de azúcar pulverizada cernida"],"preparation":["Ponga el agua, el jugo de limón y la grasa blanca a hervir. Retire del fuego y añada gradualmente el azúcar pulverizada cernida. Amase rápidamente hasta que la pasta quede firme y manejable."],"tips":[],"source":"Parte 2, pág. 54 · R174","slug":"cubierta-fondant"},{"id":"r191","title":"Pasta de azúcar rápida","category":"Decoración, cubiertas y pastillaje","ingredients":["1 clara de huevo","2 cucharadas de glucosa líquida","1 libra de azúcar pulverizada cernida"],"preparation":["Mezcle la clara con la glucosa. Añada azúcar pulverizada con cuchara de madera hasta que la masa ligue. Forme una bola y amase ligeramente sobre una superficie con azúcar hasta que quede sedosa y lisa."],"tips":[],"source":"Parte 2, pág. 54 · R175","slug":"pasta-de-azucar-rapida"},{"id":"r192","title":"Cubierta de mantequilla","category":"Decoración, cubiertas y pastillaje","ingredients":["125 g, unas 4 onzas, de mantequilla","250 g de azúcar pulverizada cernida","1/2 cucharadita de jugo de limón","Unas gotas de esencia de vainilla"],"preparation":["Bata la mantequilla hasta suavizarla e incorpore poco a poco el azúcar. Perfume con limón y vainilla."],"tips":["Variación: añadir cocoa diluida en una cucharada de agua hirviendo, o ralladura de naranja o limón."],"source":"Parte 2, pág. 55 · R176","slug":"cubierta-de-mantequilla"},{"id":"r193","title":"Cubierta real #1","category":"Decoración, cubiertas y pastillaje","ingredients":["2 claras de huevo","4 cucharaditas de jugo de limón","1 libra de azúcar pulverizada cernida","1 cucharadita de glicerina"],"preparation":["Mezcle claras y limón y agregue azúcar poco a poco hasta obtener una crema espesa. Bata hasta que forme picos blandos y termine con la glicerina. Aplique por partes sobre el ponqué y empareje con espátula o regla larga en un solo movimiento firme."],"tips":[],"source":"Parte 2, págs. 55-56 · R177","slug":"cubierta-real-1"},{"id":"r194","title":"Cubierta de chocolate","category":"Decoración, cubiertas y pastillaje","ingredients":["125 g de chocolate","60 g, unas 4 cucharadas, de mantequilla","1 clara de huevo batida a la nieve","185 g, unas 1 1/4 tazas, de azúcar pulverizada cernida"],"preparation":["Derrita chocolate y mantequilla al baño María. Incorpore la clara batida y luego el azúcar pulverizada, revolviendo hasta que quede lisa. Utilice inmediatamente mientras está tibia."],"tips":[],"source":"Parte 2, pág. 56 · R178","slug":"cubierta-de-chocolate"},{"id":"r195","title":"Cubierta para ponqué con glucosa","category":"Decoración, cubiertas y pastillaje","ingredients":["1 sobre de gelatina sin sabor","2 cucharadas de glucosa","1 kilo de azúcar pulverizada","1 cucharada de manteca vegetal"],"preparation":["Disuelva al baño María la gelatina con la glucosa y la manteca. Incorpore al azúcar pulverizada y amase hasta obtener una cubierta uniforme."],"tips":[],"source":"Parte 2, pág. 56 · R179 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"cubierta-para-ponque-con-glucosa"},{"id":"r196","title":"Masa para frutas de dulce / figuras","category":"Decoración, cubiertas y pastillaje","ingredients":["1 libra de azúcar pulverizada","2 pocillos altos de leche en polvo","1/2 pocillo de leche condensada","2 yemas de huevo","Esencia de almendra","Anilina o colorante al gusto"],"preparation":["Mezcle el azúcar pulverizada con la leche en polvo. Agregue la leche condensada y las yemas y amase hasta obtener una pasta manejable. Perfume con esencia de almendra, coloree según la figura y modele las frutas o adornos."],"tips":["El cuaderno indica trabajar la masa sobre una superficie espolvoreada con leche en polvo."],"source":"Parte 1, pág. 32 · R186","slug":"masa-para-frutas-de-dulce-figuras"},{"id":"r197","title":"Fórmula de cubierta o pastillaje - fragmento","category":"Decoración, cubiertas y pastillaje","ingredients":[],"preparation":["En estas páginas hay una fórmula manuscrita de cubierta o pastillaje cuya mayor parte está cubierta, borrosa o cortada. Se distinguen referencias a claras de huevo, gelatina y azúcar, pero no es posible reconstruir con seguridad las cantidades ni el procedimiento completo."],"tips":["Se conserva como fragmento en lugar de completar la receta por inferencia."],"source":"Parte 1, págs. 13-14 · R203","slug":"formula-de-cubierta-o-pastillaje-fragmento"},{"id":"r198","title":"Referencia anotada: arte y decoración de pasteles","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["“Arte y decoración de pasteles”, Josefina Velásquez de León. Editorial Academia de Cocina, Repostería y Decorado. 4a. de Abraham 65, México D. F."],"tips":[],"source":"Parte 1, pág. 7 · R180","slug":"referencia-anotada-arte-y-decoracion-de-pasteles"},{"id":"r199","title":"Rehidratar frutas secas en microondas","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["Para rehidratar frutas secas, colóquelas en ron u otro licor durante aproximadamente dos minutos en el microondas."],"tips":[],"source":"Parte 2, pág. 59 · R181","slug":"rehidratar-frutas-secas-en-microondas"},{"id":"r200","title":"Deshidratar hierbas en microondas","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["Coloque las hierbas sobre una servilleta de papel y cúbralas con otra. Lleve al microondas alrededor de un minuto y revise hasta que estén secas."],"tips":[],"source":"Parte 2, pág. 59 · R182","slug":"deshidratar-hierbas-en-microondas"},{"id":"r201","title":"Dibujos de decoración","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["El cuaderno contiene dibujos hechos a mano como guía de decoración: un motivo de escamas o pétalos y, más adelante, un corazón y una hoja para trabajar sobre tul. No contienen una receta escrita, pero se conserva su mención como parte del registro del cuaderno."],"tips":[],"source":"Parte 1, pág. 50 y Parte 2, pág. 57 · R183","slug":"dibujos-de-decoracion"},{"id":"r202","title":"Promesa personal de optimismo","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["Hoy hago la promesa de ser tan fuerte que nada ni nadie pueda perturbar la paz de mi espíritu; de hablar de salud, progreso y felicidad; de hacer sentir a mis amigos que hay algo grande en ellos; de ver tan solo el lado noble y hermoso, haciendo que mi optimismo sea sincero; de pensar solo en lo mejor; de olvidar los errores del pasado y luchar por los grandes hechos del porvenir; de llevar todo el tiempo mi semblante alegre y tener una sonrisa para todos; de emplear tanto tiempo en mejorarme a mí mismo que no tenga tiempo para criticar a los demás; de ser tan grande para la pena, tan noble para la cólera y tan fuerte para el miedo que mi felicidad no tema al dolor."],"tips":["Apunte personal no culinario conservado porque forma parte de lo escrito en la agenda."],"source":"Parte 2, pág. 63 · R184","slug":"promesa-personal-de-optimismo"},{"id":"r203","title":"Reglas de Aristóteles Onassis - apunte personal","category":"Técnicas y otros apuntes del cuaderno","ingredients":[],"preparation":["El cuaderno conserva un listado manuscrito titulado “Reglas de Aristóteles Onassis”. Entre los puntos anotados aparecen: cuidar el cuerpo sin obsesionarse con defectos físicos; comer poco y evitar excesos; caminar después de comer; no llevar los problemas a la mesa; hacer ejercicio y yoga; cuidar la apariencia; relacionarse con personas de distintos ambientes; cumplir los compromisos económicos; procurar una actitud alegre; dormir solo lo necesario; vivir la propia vida en vez de perder tiempo comparándose con otros; mantener el objetivo central de las aspiraciones; ahorrar y llevar presupuesto; aprovechar oportunidades para conocer gente; dar buena imagen; mantenerse a la cabeza de las propias metas; buscar nuevos horizontes; cultivar la formación, la música y el buen vestir; y “dejarse ver”."],"tips":["Este apunte está atribuido en el propio cuaderno a Aristóteles Onassis. Se conserva resumido por no tratarse de una receta de autoría familiar."],"source":"Parte 2, págs. 65-68 · R185","slug":"reglas-de-aristoteles-onassis-apunte-personal"},{"id":"r204","title":"Trufas","category":"Galletas, bocados y dulces","ingredients":["1½ libra de cobertura de chocolate de leche (anotación al margen: “2 barras”)","125 gramos de arequipe espeso","1 cucharadita de vainilla","2 cucharadas de glucosa","Maní triturado y tostado","2 cucharadas de mantequilla","Esencia de ron"],"preparation":["Disuelva el chocolate al baño María, sin que el agua toque el molde del chocolate ni dejarlo hervir.","Caliente el arequipe y mézclelo suavemente con cuchara de madera.","Agregue al chocolate la vainilla y el maní triturado y tostado.","Lleve a la nevera unos pocos minutos, mientras endurece apenas un poco.","Saque la mezcla y arme las peloticas."],"tips":["La indicación manuscrita insiste en llevar la mezcla a la nevera solo unos pocos minutos, “nada más”.","En la lista aparecen mantequilla, glucosa y esencia de ron; la fotografía no deja completamente claro en qué momento se incorporan."],"source":"Foto adicional IMG_4875","slug":"trufas"},{"id":"r205","title":"Dulce de apio (Lucrecia)","category":"Galletas, bocados y dulces","ingredients":["1 libra de apio","1½ libras de azúcar"],"preparation":["Pique el apio finamente y póngalo a cocinar con el azúcar a fuego bajo.","Revuelva con frecuencia hasta que el dulce espese, tome brillo y se vea el fondo del caldero al pasar la cuchara.","Baje del fuego y deje reposar hasta el día siguiente antes de servir o envasar."],"tips":["Cocine a fuego bajo para evitar que el azúcar se caramelice antes de que el apio quede tierno."],"source":"Foto adicional IMG_4875 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"dulce-de-apio-lucrecia"},{"id":"r206","title":"Muffins de salvado","category":"Tortas, bizcochos y repostería","ingredients":["1 taza de salvado","¾ de taza de harina de trigo","1 cucharadita de sal","¼ de panela molida (la nota no especifica unidad adicional)","½ cucharadita de polvo para hornear","¾ de taza de kumis","¼ de taza de aceite","1 huevo"],"preparation":["Mezcle los ingredientes secos y agregue los líquidos.","Mezcle bien.","Lleve al horno a 350° durante 25 minutos."],"tips":["La anotación indica utilizar un molde para 12 muffins."],"source":"Foto adicional IMG_4873","slug":"muffins-de-salvado"},{"id":"r207","title":"Pollo “Esperanza”","category":"Pollo y aves","ingredients":["Pollo","Ajo","Sal","Jugo de naranja","Tomate","Cebolla","Un poquito de miel de abejas","Zanahoria en julianas"],"preparation":["Adobe el pollo con ajo y sal por 2 horas mínimo.","Luego séllelo y colóquelo con jugo de naranja.","Cocine a fuego lento y agregue tomate, cebolla, un poquito de miel de abejas y zanahoria en julianas."],"tips":["El pollo debe adobarse por lo menos 2 horas."],"source":"Foto adicional IMG_4876","slug":"pollo-esperanza"},{"id":"r208","title":"Cacerola de pollo","category":"Pollo y aves","ingredients":["1 cubo de caldo Maggi","2 pocillos de arroz parbolizado","2 cebollas cabezonas","1 pimentón rojo grande","3 cucharadas de mantequilla","4 cucharadas de harina de trigo","1 caja de crema de leche","2 tazas de caldo de pollo","Sal y pimienta","1 pechuga grande cocinada y picada en cuadritos","½ pocillo de perejil seco","4 cucharadas de almendras picadas"],"preparation":["Prepare 2 pocillos de arroz parbolizado. La anotación indica: por 1 pocillo de arroz, 2 de agua, mantequilla y sal. No lo deje secar demasiado.","Aparte, en una sartén o caldero grande, sofría la cebolla con la mantequilla.","Añada el pimentón y cocine hasta que marchite.","Disuelva la harina de trigo en 1 pocillo de leche, agregue la crema de leche y lleve esta mezcla a la sartén con la cebolla.","Cocine sin dejar de revolver y vaya agregando caldo de pollo.","Cuando la crema esté hecha, agregue el perejil, las almendras picadas y el pollo en cuadritos.","Revuelva con mucho cuidado para no desbaratar el pollo.","Agregue esta preparación al arroz seco, pruebe de sal y pimienta y cocine unos 10 minutos. Debe quedar bien mojado.","Pase a una refractaria enmantequillada y hornee aproximadamente 30 minutos."],"tips":["6 porciones.","No deje secar demasiado el arroz.","Revuelva con mucho cuidado para no desbaratar el pollo.","La preparación final debe quedar bien mojada.","Sirve con pan y ensalada."],"source":"Foto adicional IMG_4874 · Edición culinaria: lecturas dudosas completadas por lógica de receta","slug":"cacerola-de-pollo"}];
+const CATEGORIES = [{"name":"Masas, panes, pizzas y fritos","count":25,"slug":"masas-panes-pizzas-y-fritos"},{"name":"Arroces, pastas y platos de cereal","count":7,"slug":"arroces-pastas-y-platos-de-cereal"},{"name":"Carnes y cerdo","count":22,"slug":"carnes-y-cerdo"},{"name":"Pollo y aves","count":14,"slug":"pollo-y-aves"},{"name":"Pescados y mariscos","count":8,"slug":"pescados-y-mariscos"},{"name":"Salsas, aderezos y acompañamientos","count":19,"slug":"salsas-aderezos-y-acompanamientos"},{"name":"Ensaladas, vegetales y preparaciones con soya","count":15,"slug":"ensaladas-vegetales-y-preparaciones-con-soya"},{"name":"Postres fríos, natillas y bebidas","count":18,"slug":"postres-frios-natillas-y-bebidas"},{"name":"Tortas, bizcochos y repostería","count":34,"slug":"tortas-bizcochos-y-reposteria"},{"name":"Galletas, bocados y dulces","count":15,"slug":"galletas-bocados-y-dulces"},{"name":"Decoración, cubiertas y pastillaje","count":25,"slug":"decoracion-cubiertas-y-pastillaje"},{"name":"Técnicas y otros apuntes del cuaderno","count":6,"slug":"tecnicas-y-otros-apuntes-del-cuaderno"}];
+
+const recipeGrid = document.getElementById('recipeGrid');
+const categoryGrid = document.getElementById('categoryGrid');
+const searchInput = document.getElementById('searchInput');
+const clearSearch = document.getElementById('clearSearch');
+const resultsCount = document.getElementById('resultsCount');
+const filterState = document.getElementById('filterState');
+const modal = document.getElementById('recipeModal');
+const modalBody = document.getElementById('modalBody');
+const backTop = document.getElementById('backTop');
+
+let selectedCategory = '';
+let searchTerm = '';
+
+const normalize = (s) => (s || '')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g,'')
+  .toLowerCase();
+
+RECIPES.forEach(r => {
+  r._search = normalize([
+    r.title, r.category,
+    ...(r.ingredients || []),
+    ...(r.preparation || []),
+    ...(r.tips || [])
+  ].join(' '));
+});
+
+function esc(s=''){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+}
+
+function renderCategories(){
+  categoryGrid.innerHTML = CATEGORIES.map((c,i) => `
+    <button class="category-card" type="button" data-category="${esc(c.name)}">
+      <div class="category-number">${String(i+1).padStart(2,'0')}</div>
+      <div class="category-name">${esc(c.name)}</div>
+      <div class="category-count">${c.count} ${c.count === 1 ? 'entrada' : 'entradas'}</div>
+    </button>
+  `).join('');
+}
+
+function previewFor(r){
+  if(r.ingredients?.length) return r.ingredients.slice(0,3).join(' · ');
+  if(r.preparation?.length) return r.preparation[0].slice(0,130) + (r.preparation[0].length > 130 ? '…' : '');
+  return 'Consulta el contenido completo.';
+}
+
+function filteredRecipes(){
+  const q = normalize(searchTerm.trim());
+  return RECIPES.filter(r => {
+    const categoryOk = !selectedCategory || r.category === selectedCategory;
+    const searchOk = !q || r._search.includes(q);
+    return categoryOk && searchOk;
+  });
+}
+
+function renderFilters(){
+  let html = '';
+  if(selectedCategory){
+    html += `<span class="filter-chip">${esc(selectedCategory)} <button type="button" data-clear-category aria-label="Quitar filtro de categoría">×</button></span>`;
+  }
+  if(searchTerm.trim()){
+    html += `<span class="filter-chip">“${esc(searchTerm.trim())}” <button type="button" data-clear-search-chip aria-label="Quitar búsqueda">×</button></span>`;
+  }
+  filterState.innerHTML = html;
+}
+
+function renderRecipes(){
+  const list = filteredRecipes();
+  resultsCount.textContent = `${list.length} ${list.length === 1 ? 'resultado' : 'resultados'}`;
+  renderFilters();
+
+  if(!list.length){
+    recipeGrid.innerHTML = `<div class="empty"><strong>No encontré resultados.</strong><br>Prueba con otro nombre, ingrediente o categoría.</div>`;
+    return;
+  }
+
+  recipeGrid.innerHTML = list.map(r => `
+    <article class="recipe-card">
+      <div class="recipe-cat">${esc(r.category)}</div>
+      <h3>${esc(r.title)}</h3>
+      <p class="recipe-preview">${esc(previewFor(r))}</p>
+      <div class="card-actions">
+        <button class="open-recipe" type="button" data-recipe="${r.slug}">Ver receta →</button>
+        <span class="card-source">${esc(r.id.toUpperCase())}</span>
+      </div>
+    </article>
+  `).join('');
+}
+
+function openRecipe(slug, updateHash=true){
+  const r = RECIPES.find(x => x.slug === slug);
+  if(!r) return;
+
+  const ingredients = r.ingredients?.length
+    ? `<section class="recipe-section"><h4>Ingredientes</h4><ul class="ingredients">${r.ingredients.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`
+    : '';
+
+  const prep = r.preparation?.length
+    ? `<section class="recipe-section prep"><h4>Preparación</h4>${r.preparation.map(x=>`<p>${esc(x)}</p>`).join('')}</section>`
+    : '';
+
+  const tips = r.tips?.length
+    ? `<section class="recipe-section tips"><h4>Tips de la abuela</h4><div class="tip-box">${r.tips.map(x=>`<p>${esc(x)}</p>`).join('')}</div></section>`
+    : `<section class="recipe-section tips"><h4>Tips de la abuela</h4><p class="tip-empty">Sin tip adicional registrado en esta entrada del cuaderno.</p></section>`;
+
+  modalBody.innerHTML = `
+    <div class="panel-cat">${esc(r.category)}</div>
+    <h2 class="panel-title" id="modalTitle">${esc(r.title)}</h2>
+    <div class="panel-source">Referencia del cuaderno: ${esc(r.source)}</div>
+    ${ingredients}${prep}${tips}
+  `;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  if(updateHash) history.pushState({recipe:r.slug},'',`#receta=${encodeURIComponent(r.slug)}`);
+  setTimeout(()=>modal.querySelector('[data-close-modal]').focus(),30);
+}
+
+function closeModal(updateHash=true){
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  if(updateHash && location.hash.startsWith('#receta=')){
+    history.pushState({},'',location.pathname + location.search);
+  }
+}
+
+function setCategory(cat){
+  selectedCategory = cat;
+  renderRecipes();
+  document.getElementById('recipes').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+categoryGrid.addEventListener('click', e => {
+  const btn = e.target.closest('[data-category]');
+  if(btn) setCategory(btn.dataset.category);
+});
+
+recipeGrid.addEventListener('click', e => {
+  const btn = e.target.closest('[data-recipe]');
+  if(btn) openRecipe(btn.dataset.recipe);
+});
+
+filterState.addEventListener('click', e => {
+  if(e.target.closest('[data-clear-category]')){
+    selectedCategory = '';
+    renderRecipes();
+  }
+  if(e.target.closest('[data-clear-search-chip]')){
+    searchTerm = '';
+    searchInput.value = '';
+    renderRecipes();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  searchTerm = searchInput.value;
+  renderRecipes();
+});
+
+searchInput.addEventListener('keydown', e => {
+  if(e.key === 'Enter'){
+    document.getElementById('recipes').scrollIntoView({behavior:'smooth'});
+  }
+});
+
+clearSearch.addEventListener('click', () => {
+  searchInput.value = '';
+  searchTerm = '';
+  renderRecipes();
+  searchInput.focus();
+});
+
+document.getElementById('searchFocusBtn').addEventListener('click', () => {
+  searchInput.focus();
+  searchInput.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+document.getElementById('homeBtn').addEventListener('click', () => {
+  selectedCategory = '';
+  searchTerm = '';
+  searchInput.value = '';
+  renderRecipes();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+modal.addEventListener('click', e => {
+  if(e.target.closest('[data-close-modal]')) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+});
+
+document.getElementById('printRecipe').addEventListener('click', () => window.print());
+
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('show', window.scrollY > 700);
+});
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+window.addEventListener('popstate', () => {
+  if(location.hash.startsWith('#receta=')){
+    openRecipe(decodeURIComponent(location.hash.split('=')[1]), false);
+  } else {
+    closeModal(false);
+  }
+});
+
+document.getElementById('recipeTotalPill').textContent = `${RECIPES.length} recetas y apuntes`;
+document.getElementById('categoryTotalPill').textContent = `${CATEGORIES.length} categorías`;
+
+renderCategories();
+renderRecipes();
+
+if(location.hash.startsWith('#receta=')){
+  openRecipe(decodeURIComponent(location.hash.split('=')[1]), false);
+}
+
+// Ajustes específicos para móviles
+(function(){
+  const vv = window.visualViewport;
+  function setViewportVars(){
+    const h = vv ? vv.height : window.innerHeight;
+    document.documentElement.style.setProperty('--app-height', `${h}px`);
+  }
+  setViewportVars();
+  window.addEventListener('resize', setViewportVars, {passive:true});
+  if(vv) vv.addEventListener('resize', setViewportVars, {passive:true});
+
+  // Al abrir una receta desde el buscador, cierra el teclado móvil.
+  const originalOpenRecipe = openRecipe;
+  openRecipe = function(slug, updateHash=true){
+    if(document.activeElement && typeof document.activeElement.blur === 'function'){
+      document.activeElement.blur();
+    }
+    originalOpenRecipe(slug, updateHash);
+    const panel = document.querySelector('.recipe-panel');
+    if(panel) panel.scrollTop = 0;
+  };
+
+  // Evita que Safari conserve posiciones extrañas al volver atrás.
+  window.addEventListener('pageshow', () => {
+    document.body.classList.toggle('modal-open', modal.classList.contains('open'));
+  });
+})();
+
+</script>
+</body>
+</html>
